@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileStorageService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.service</a> &gt; <span class="el_source">FileStorageService.java</span></div><h1>FileStorageService.java</h1><pre class="source lang-java linenums">package com.bakery.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
+
+@Service
+public class FileStorageService {
+
+    private final Path uploadDir;
+
+<span class="fc" id="L17">    public FileStorageService() {</span>
+<span class="fc" id="L18">        this.uploadDir = Paths.get(&quot;src/main/resources/static/uploads&quot;);</span>
+        try {
+<span class="fc" id="L20">            createDirectories(uploadDir);</span>
+<span class="fc" id="L21">        } catch (IOException e) {</span>
+<span class="fc" id="L22">            throw new RuntimeException(&quot;Could not create upload directory&quot;, e);</span>
+<span class="fc" id="L23">        }</span>
+<span class="fc" id="L24">    }</span>
+
+    // Protected method for testability
+    protected void createDirectories(Path path) throws IOException {
+<span class="fc" id="L28">        Files.createDirectories(path);</span>
+<span class="fc" id="L29">    }</span>
+
+    public String storeFile(MultipartFile file) throws IOException {
+<span class="fc bfc" id="L32" title="All 4 branches covered.">        if (file == null || file.isEmpty()) {</span>
+<span class="fc" id="L33">            return null;</span>
+        }
+
+<span class="fc" id="L36">        String fileName = UUID.randomUUID() + &quot;_&quot; + file.getOriginalFilename();</span>
+<span class="fc" id="L37">        Path filePath = uploadDir.resolve(fileName);</span>
+
+<span class="fc" id="L39">        Files.copy(file.getInputStream(), filePath);</span>
+
+<span class="fc" id="L41">        return &quot;/uploads/&quot; + fileName;</span>
+    }
+
+    public boolean deleteFile(String filePath) {
+        try {
+<span class="fc bfc" id="L46" title="All 4 branches covered.">            if (filePath != null &amp;&amp; filePath.startsWith(&quot;/uploads/&quot;)) {</span>
+<span class="fc" id="L47">                String fileName = filePath.substring(&quot;/uploads/&quot;.length());</span>
+<span class="fc" id="L48">                Path path = uploadDir.resolve(fileName);</span>
+<span class="fc" id="L49">                return deleteIfExists(path);</span>
+            }
+<span class="fc" id="L51">            return false;</span>
+<span class="fc" id="L52">        } catch (IOException e) {</span>
+<span class="fc" id="L53">            System.err.println(&quot;Failed to delete file: &quot; + e.getMessage());</span>
+<span class="fc" id="L54">            return false;</span>
+        }
+    }
+
+    // Protected method for testability
+    protected boolean deleteIfExists(Path path) throws IOException {
+<span class="fc" id="L60">        return Files.deleteIfExists(path);</span>
+    }
+
+    public boolean isImageFile(MultipartFile file) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (file == null)</span>
+<span class="fc" id="L65">            return false;</span>
+
+<span class="fc" id="L67">        String contentType = file.getContentType();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return contentType != null &amp;&amp;</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">                (contentType.startsWith(&quot;image/jpeg&quot;) ||</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">                        contentType.startsWith(&quot;image/png&quot;) ||</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">                        contentType.startsWith(&quot;image/gif&quot;));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

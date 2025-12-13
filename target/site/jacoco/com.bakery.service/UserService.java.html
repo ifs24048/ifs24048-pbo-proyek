@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.service</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package com.bakery.service;
+
+import com.bakery.entity.User;
+import com.bakery.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
+
+@Service
+public class UserService {
+    
+    private final UserRepository userRepository;
+    
+<span class="fc" id="L16">    public UserService(UserRepository userRepository) {</span>
+<span class="fc" id="L17">        this.userRepository = userRepository;</span>
+<span class="fc" id="L18">    }</span>
+    
+    public void createUser(String name, String email, String password) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (userRepository.existsByEmail(email)) {</span>
+<span class="fc" id="L22">            throw new RuntimeException(&quot;Email sudah terdaftar&quot;);</span>
+        }
+        
+<span class="fc" id="L25">        User user = new User();</span>
+<span class="fc" id="L26">        user.setName(name);</span>
+<span class="fc" id="L27">        user.setEmail(email);</span>
+<span class="fc" id="L28">        user.setPassword(password);</span>
+<span class="fc" id="L29">        user.setCreatedAt(LocalDateTime.now());</span>
+<span class="fc" id="L30">        user.setUpdatedAt(LocalDateTime.now());</span>
+        
+<span class="fc" id="L32">        userRepository.save(user);</span>
+<span class="fc" id="L33">    }</span>
+    
+    public Optional&lt;User&gt; login(String email, String password) {
+<span class="fc" id="L36">        Optional&lt;User&gt; user = userRepository.findByEmail(email);</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        if (user.isPresent() &amp;&amp; user.get().getPassword().equals(password)) {</span>
+<span class="fc" id="L38">            return user;</span>
+        }
+<span class="fc" id="L40">        return Optional.empty();</span>
+    }
+    
+    public Optional&lt;User&gt; getUserById(UUID id) {
+<span class="fc" id="L44">        return userRepository.findById(id);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

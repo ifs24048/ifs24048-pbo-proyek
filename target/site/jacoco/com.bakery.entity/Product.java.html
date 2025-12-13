@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Product.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.entity</a> &gt; <span class="el_source">Product.java</span></div><h1>Product.java</h1><pre class="source lang-java linenums">package com.bakery.entity;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = &quot;products&quot;)
+<span class="fc" id="L11">public class Product {</span>
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    
+    @Column(name = &quot;user_id&quot;, nullable = false)
+    private UUID userId;
+    
+    @NotBlank(message = &quot;Product name is required&quot;)
+    @Column(name = &quot;product_name&quot;, nullable = false)
+    private String productName;
+    
+    @NotBlank(message = &quot;Category is required&quot;)
+    @Column(nullable = false)
+    private String category;
+    
+    @NotNull(message = &quot;Price is required&quot;)
+    @Column(nullable = false)
+    private Double price;
+    
+    @NotNull(message = &quot;Stock is required&quot;)
+    @Column(nullable = false)
+    private Integer stock;
+    
+    @Lob
+    @Column(columnDefinition = &quot;TEXT&quot;)
+    private String description;
+    
+    @Column(name = &quot;image_url&quot;)
+    private String imageUrl;
+    
+<span class="fc" id="L43">    @Column(name = &quot;is_available&quot;)</span>
+<span class="fc" id="L44">    private Boolean isAvailable = true;</span>
+    
+    @Column(name = &quot;sold_count&quot;)
+    private Integer soldCount;
+    
+    @Column(name = &quot;created_at&quot;)
+    private LocalDateTime createdAt;
+    
+    @Column(name = &quot;updated_at&quot;)
+    private LocalDateTime updatedAt;
+    
+    // Getter and Setter
+<span class="fc" id="L56">    public UUID getId() { return id; }</span>
+<span class="fc" id="L57">    public void setId(UUID id) { this.id = id; }</span>
+    
+<span class="fc" id="L59">    public UUID getUserId() { return userId; }</span>
+<span class="fc" id="L60">    public void setUserId(UUID userId) { this.userId = userId; }</span>
+    
+<span class="fc" id="L62">    public String getProductName() { return productName; }</span>
+<span class="fc" id="L63">    public void setProductName(String productName) { this.productName = productName; }</span>
+    
+<span class="fc" id="L65">    public String getCategory() { return category; }</span>
+<span class="fc" id="L66">    public void setCategory(String category) { this.category = category; }</span>
+    
+<span class="fc" id="L68">    public Double getPrice() { return price; }</span>
+<span class="fc" id="L69">    public void setPrice(Double price) { this.price = price; }</span>
+    
+<span class="fc" id="L71">    public Integer getStock() { return stock; }</span>
+<span class="fc" id="L72">    public void setStock(Integer stock) { this.stock = stock; }</span>
+    
+<span class="fc" id="L74">    public String getDescription() { return description; }</span>
+<span class="fc" id="L75">    public void setDescription(String description) { this.description = description; }</span>
+    
+<span class="fc" id="L77">    public String getImageUrl() { return imageUrl; }</span>
+<span class="fc" id="L78">    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }</span>
+    
+<span class="fc" id="L80">    public Boolean getIsAvailable() { return isAvailable; }</span>
+<span class="fc" id="L81">    public void setIsAvailable(Boolean isAvailable) { this.isAvailable = isAvailable; }</span>
+    
+<span class="fc" id="L83">    public Integer getSoldCount() { return soldCount; }</span>
+<span class="fc" id="L84">    public void setSoldCount(Integer soldCount) { this.soldCount = soldCount; }</span>
+    
+<span class="fc" id="L86">    public LocalDateTime getCreatedAt() { return createdAt; }</span>
+<span class="fc" id="L87">    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }</span>
+    
+<span class="fc" id="L89">    public LocalDateTime getUpdatedAt() { return updatedAt; }</span>
+<span class="fc" id="L90">    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }</span>
+    
+    @PrePersist
+    protected void onCreate() {
+<span class="fc" id="L94">        createdAt = LocalDateTime.now();</span>
+<span class="fc" id="L95">        updatedAt = LocalDateTime.now();</span>
+<span class="fc" id="L96">    }</span>
+    
+    @PreUpdate
+    protected void onUpdate() {
+<span class="fc" id="L100">        updatedAt = LocalDateTime.now();</span>
+<span class="fc" id="L101">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

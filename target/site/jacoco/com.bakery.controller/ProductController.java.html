@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.controller</a> &gt; <span class="el_source">ProductController.java</span></div><h1>ProductController.java</h1><pre class="source lang-java linenums">package com.bakery.controller;
+
+import com.bakery.entity.Product;
+import com.bakery.service.ProductService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
+import java.io.IOException;
+import java.util.Optional;
+import java.util.UUID;
+
+@Controller
+@RequestMapping(&quot;/products&quot;)
+public class ProductController {
+
+    private final ProductService productService;
+
+<span class="fc" id="L23">    public ProductController(ProductService productService) {</span>
+<span class="fc" id="L24">        this.productService = productService;</span>
+<span class="fc" id="L25">    }</span>
+
+    @GetMapping
+    public String listProducts(Model model, HttpSession session) {
+<span class="fc" id="L29">        UUID userId = (UUID) session.getAttribute(&quot;userId&quot;);</span>
+
+<span class="fc" id="L31">        model.addAttribute(&quot;products&quot;, productService.getProductsByUserId(userId));</span>
+<span class="fc" id="L32">        return &quot;products/list&quot;;</span>
+    }
+
+    @GetMapping(&quot;/create&quot;)
+    public String showCreateForm(Model model, HttpSession session) {
+
+<span class="fc" id="L38">        model.addAttribute(&quot;product&quot;, new Product());</span>
+<span class="fc" id="L39">        return &quot;products/create&quot;;</span>
+    }
+
+    @PostMapping(&quot;/create&quot;)
+    public String createProduct(
+            @Valid @ModelAttribute Product product,
+            BindingResult bindingResult,
+            @RequestParam(value = &quot;imageFile&quot;, required = false) MultipartFile imageFile,
+            HttpSession session) throws IOException {
+
+<span class="fc" id="L49">        UUID userId = (UUID) session.getAttribute(&quot;userId&quot;);</span>
+
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (bindingResult.hasErrors()) {</span>
+<span class="fc" id="L52">            return &quot;products/create&quot;; // Return to the form with errors</span>
+        }
+
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (product.getSoldCount() == null) {</span>
+<span class="fc" id="L56">            product.setSoldCount(0);</span>
+        }
+
+<span class="fc" id="L59">        Product savedProduct = productService.createProduct(product, userId);</span>
+
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        if (imageFile != null &amp;&amp; !imageFile.isEmpty()) {</span>
+<span class="fc" id="L62">            productService.updateProductImage(savedProduct.getId(), imageFile);</span>
+        }
+
+<span class="fc" id="L65">        return &quot;redirect:/products?success=true&quot;;</span>
+    }
+
+    @GetMapping(&quot;/edit/{id}&quot;)
+    public String showEditForm(@PathVariable UUID id, Model model, HttpSession session) {
+
+<span class="fc" id="L71">        Optional&lt;Product&gt; product = productService.getProductById(id);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (product.isPresent()) {</span>
+<span class="fc" id="L73">            model.addAttribute(&quot;product&quot;, product.get());</span>
+<span class="fc" id="L74">            return &quot;products/edit&quot;;</span>
+        }
+<span class="fc" id="L76">        return &quot;redirect:/products&quot;;</span>
+    }
+
+    @PostMapping(&quot;/update/{id}&quot;)
+    public String updateProduct(
+            @PathVariable UUID id,
+            @Valid @ModelAttribute Product product,
+            BindingResult bindingResult,
+            HttpSession session) {
+
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        if (bindingResult.hasErrors()) {</span>
+<span class="fc" id="L87">            return &quot;products/edit&quot;; // Return to the edit form with errors</span>
+        }
+
+<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (product.getSoldCount() == null) {</span>
+<span class="fc" id="L91">            Optional&lt;Product&gt; existingProduct = productService.getProductById(id);</span>
+<span class="fc" id="L92">            product.setSoldCount(existingProduct.map(Product::getSoldCount).orElse(0));</span>
+        }
+
+        try {
+<span class="fc" id="L96">            productService.updateProduct(id, product);</span>
+<span class="fc" id="L97">        } catch (RuntimeException e) {</span>
+            // Log the error if necessary
+            // In this specific case, if &quot;Product not found&quot;, we redirect
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if (e.getMessage().equals(&quot;Product not found&quot;)) {</span>
+<span class="fc" id="L101">                return &quot;redirect:/products&quot;;</span>
+            }
+<span class="fc" id="L103">            throw e; // Re-throw other unexpected exceptions</span>
+<span class="fc" id="L104">        }</span>
+<span class="fc" id="L105">        return &quot;redirect:/products?success=true&quot;;</span>
+    }
+
+    @GetMapping(&quot;/edit-image/{id}&quot;)
+    public String showEditImageForm(@PathVariable UUID id, Model model, HttpSession session) {
+
+<span class="fc" id="L111">        Optional&lt;Product&gt; product = productService.getProductById(id);</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (product.isPresent()) {</span>
+<span class="fc" id="L113">            model.addAttribute(&quot;product&quot;, product.get());</span>
+<span class="fc" id="L114">            return &quot;products/edit-image&quot;;</span>
+        }
+<span class="fc" id="L116">        return &quot;redirect:/products&quot;;</span>
+    }
+
+    @PostMapping(&quot;/update-image/{id}&quot;)
+    public String updateProductImage(
+            @PathVariable UUID id,
+            @RequestParam(&quot;imageFile&quot;) MultipartFile imageFile,
+            HttpSession session) { // Removed throws IOException
+
+        try {
+<span class="fc" id="L126">            productService.updateProductImage(id, imageFile);</span>
+<span class="fc" id="L127">        } catch (IOException e) {</span>
+<span class="fc" id="L128">            System.err.println(&quot;Failed to update product image: &quot; + e.getMessage()); // Log the error</span>
+<span class="fc" id="L129">            return &quot;redirect:/products?error=image_upload_failed&quot;; // Redirect with error</span>
+<span class="fc" id="L130">        }</span>
+<span class="fc" id="L131">        return &quot;redirect:/products?success=true&quot;;</span>
+    }
+
+    @GetMapping(&quot;/confirm-delete/{id}&quot;)
+    public String showDeleteConfirmation(@PathVariable UUID id, Model model, HttpSession session) {
+
+<span class="fc" id="L137">        Optional&lt;Product&gt; product = productService.getProductById(id);</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">        if (product.isPresent()) {</span>
+<span class="fc" id="L139">            model.addAttribute(&quot;product&quot;, product.get());</span>
+<span class="fc" id="L140">            return &quot;products/delete&quot;;</span>
+        }
+<span class="fc" id="L142">        return &quot;redirect:/products&quot;;</span>
+    }
+
+    @PostMapping(&quot;/delete/{id}&quot;)
+    public String deleteProduct(@PathVariable UUID id, HttpSession session) {
+
+<span class="fc" id="L148">        productService.deleteProduct(id);</span>
+<span class="fc" id="L149">        return &quot;redirect:/products?success=true&quot;;</span>
+    }
+
+    @GetMapping(&quot;/detail/{id}&quot;)
+    public String showProductDetail(@PathVariable UUID id, Model model, HttpSession session) {
+
+<span class="fc" id="L155">        Optional&lt;Product&gt; product = productService.getProductById(id);</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (product.isPresent()) {</span>
+<span class="fc" id="L157">            model.addAttribute(&quot;product&quot;, product.get());</span>
+<span class="fc" id="L158">            return &quot;products/detail&quot;;</span>
+        }
+<span class="fc" id="L160">        return &quot;redirect:/products&quot;;</span>
+    }
+
+    @GetMapping(&quot;/update-sales/{id}&quot;)
+    public String showUpdateSalesForm(@PathVariable UUID id, Model model, HttpSession session) {
+
+<span class="fc" id="L166">        Optional&lt;Product&gt; product = productService.getProductById(id);</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">        if (product.isPresent()) {</span>
+<span class="fc" id="L168">            model.addAttribute(&quot;product&quot;, product.get());</span>
+<span class="fc" id="L169">            return &quot;products/update-sales&quot;;</span>
+        }
+<span class="fc" id="L171">        return &quot;redirect:/products&quot;;</span>
+    }
+
+    @PostMapping(&quot;/update-sales/{id}&quot;)
+    public String updateSales(
+            @PathVariable UUID id,
+            @RequestParam Integer soldCount,
+            HttpSession session) {
+
+        try {
+<span class="fc" id="L181">            productService.updateSales(id, soldCount);</span>
+<span class="fc" id="L182">        } catch (RuntimeException e) {</span>
+            // Log the error if necessary
+<span class="fc bfc" id="L184" title="All 2 branches covered.">            if (e.getMessage().equals(&quot;Product not found&quot;)) {</span>
+<span class="fc" id="L185">                return &quot;redirect:/products&quot;;</span>
+            }
+<span class="fc" id="L187">            throw e; // Re-throw other unexpected exceptions</span>
+<span class="fc" id="L188">        }</span>
+
+<span class="fc" id="L190">        return &quot;redirect:/products?success=true&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
