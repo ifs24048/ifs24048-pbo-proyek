@@ -54,5 +54,4 @@ command with open jacoco: `xdg-open target\site\jacoco\index.html`
 
 Proyek ini dibuat untuk tujuan **Pendidikan**.
 
--first update
--add logo
+- mimi's bakery
