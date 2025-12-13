@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 bakery-sales-manager,com.bakery.service,UserService,0,66,0,6,0,18,0,7,0,4
-bakery-sales-manager,com.bakery.service,FileStorageService,0,112,0,18,0,31,0,15,0,6
+bakery-sales-manager,com.bakery.service,FileStorageService,0,113,0,18,0,31,0,15,0,6
 bakery-sales-manager,com.bakery.service,AuthTokenService,0,70,0,2,0,19,0,7,0,6
 bakery-sales-manager,com.bakery.service,ProductService,0,159,0,6,0,37,0,17,0,14
 bakery-sales-manager,com.bakery.views,AuthView.RegisterView,0,3,0,0,0,1,0,1,0,1

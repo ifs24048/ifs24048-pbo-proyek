@@ -1,0 +1,2669 @@
+2025-12-13 14:41:33 - Starting BakeryApplicationTest using Java 17.0.17 with PID 1228 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:41:33 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:41:33 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:41:35 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:41:35 - Finished Spring Data repository scanning in 153 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:41:36 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:41:36 - HHH000412: Hibernate ORM core version 6.2.22.Final
+2025-12-13 14:41:36 - HHH000406: Using bytecode reflection optimizer
+2025-12-13 14:41:37 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:41:37 - HikariPool-1 - Starting...
+2025-12-13 14:41:38 - HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/db_bakery_pbo user=SA
+2025-12-13 14:41:38 - HikariPool-1 - Start completed.
+2025-12-13 14:41:38 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:41:41 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:41:41 - 
+    create table auth_tokens (
+        id uuid not null,
+        created_at timestamp(6),
+        token varchar(255) not null,
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:41:41 - 
+    create table products (
+        id uuid not null,
+        category varchar(255) not null,
+        created_at timestamp(6),
+        description TEXT,
+        image_url varchar(255),
+        is_available boolean,
+        price float(53) not null,
+        product_name varchar(255) not null,
+        sold_count integer,
+        stock integer not null,
+        updated_at timestamp(6),
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:41:41 - 
+    create table users (
+        id uuid not null,
+        created_at timestamp(6),
+        email varchar(255) not null,
+        name varchar(255) not null,
+        password varchar(255) not null,
+        updated_at timestamp(6),
+        primary key (id)
+    )
+2025-12-13 14:41:41 - 
+    alter table if exists auth_tokens 
+       drop constraint if exists UK_8eqyhmaqeqakfjut8vpdfm6cr
+2025-12-13 14:41:41 - 
+    alter table if exists auth_tokens 
+       add constraint UK_8eqyhmaqeqakfjut8vpdfm6cr unique (token)
+2025-12-13 14:41:41 - 
+    alter table if exists users 
+       drop constraint if exists UK_6dotkott2kjsp8vw4d0m25fb7
+2025-12-13 14:41:41 - 
+    alter table if exists users 
+       add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2025-12-13 14:41:41 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:41:42 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-13 14:41:42 - Adding welcome page template: index
+2025-12-13 14:41:43 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/db_bakery_pbo'
+2025-12-13 14:41:43 - Started BakeryApplicationTest in 11.085 seconds (process running for 15.899)
+2025-12-13 14:41:43 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080/
+? External URL: http://172.28.41.115:8080/
+?? H2 Console: http://localhost:8080//h2-console
+========================================
+2025-12-13 14:41:44 - Starting BakeryApplication using Java 17.0.17 with PID 1228 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:41:44 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:41:44 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:41:44 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:41:44 - Finished Spring Data repository scanning in 29 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:41:45 - Tomcat initialized with port(s): 8080 (http)
+2025-12-13 14:41:45 - Starting service [Tomcat]
+2025-12-13 14:41:45 - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-12-13 14:41:45 - Initializing Spring embedded WebApplicationContext
+2025-12-13 14:41:45 - Root WebApplicationContext: initialization completed in 1144 ms
+2025-12-13 14:41:45 - HikariPool-2 - Starting...
+2025-12-13 14:41:45 - HikariPool-2 - Added connection conn10: url=jdbc:h2:file:./data/db_bakery_pbo user=SA
+2025-12-13 14:41:45 - HikariPool-2 - Start completed.
+2025-12-13 14:41:45 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/db_bakery_pbo'
+2025-12-13 14:41:45 - RequestLoggingFilter initialized
+2025-12-13 14:41:45 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:41:45 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:41:45 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:41:46 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:41:46 - 
+    alter table if exists products 
+       alter column description set data type TEXT
+2025-12-13 14:41:46 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:41:46 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-13 14:41:46 - Adding welcome page template: index
+2025-12-13 14:41:46 - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-13 14:41:46 - Started BakeryApplication in 2.063 seconds (process running for 18.971)
+2025-12-13 14:41:46 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080/
+? External URL: http://172.28.41.115:8080/
+?? H2 Console: http://localhost:8080//h2-console
+========================================
+2025-12-13 14:41:48 - RequestLoggingFilter initialized
+2025-12-13 14:41:48 - RequestLoggingFilter destroyed
+2025-12-13 14:41:48 - Request: GET /test | Status: 200 | Duration: 1ms
+2025-12-13 14:41:48 - Request: POST /api/test | Status: 500 | Duration: 1ms
+2025-12-13 14:41:48 - Failed to determine host address
+java.net.UnknownHostException: Test Exception
+	at com.bakery.config.StartupInfoLogger.getHostAddress(StartupInfoLogger.java:57)
+	at com.bakery.config.StartupInfoLogger.logApplicationStartup(StartupInfoLogger.java:29)
+	at com.bakery.config.StartupInfoLogger.logApplicationStartup(StartupInfoLogger.java:26)
+	at com.bakery.config.StartupInfoLoggerTest.testLogApplicationStartup_UnknownHostException(StartupInfoLoggerTests.java:69)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-12-13 14:41:48 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080
+? External URL: http://172.28.41.115:8080
+?? H2 Console: http://localhost:8080/h2-console
+========================================
+2025-12-13 14:41:48 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: prod
+? Local URL: https://localhost:8443/api
+? External URL: https://172.28.41.115:8443/api
+?? H2 Console: https://localhost:8443/api/h2-console
+========================================
+2025-12-13 14:41:49 - Could not detect default configuration classes for test class [com.bakery.controller.ProductControllerTest]: ProductControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:41:49 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.controller.ProductControllerTest
+2025-12-13 14:41:49 - Starting ProductControllerTest using Java 17.0.17 with PID 1228 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:41:49 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:41:49 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:41:50 - Adding welcome page template: index
+2025-12-13 14:41:50 - Initializing Spring TestDispatcherServlet ''
+2025-12-13 14:41:50 - Initializing Servlet ''
+2025-12-13 14:41:50 - Completed initialization in 1 ms
+2025-12-13 14:41:50 - Started ProductControllerTest in 0.927 seconds (process running for 22.8)
+2025-12-13 14:41:50 - Request: GET /products/create | Status: 302 | Duration: 78ms
+2025-12-13 14:41:50 - Request: POST /products/delete/8f81ff03-d8b5-4a7b-ad97-8388fd520de5 | Status: 302 | Duration: 1ms
+2025-12-13 14:41:50 - Request: GET /products/edit-image/d9a798eb-736c-4cea-bfb0-2ea99e151157 | Status: 302 | Duration: 0ms
+2025-12-13 14:41:50 - Request: GET /products/detail/3c2c24b1-e7c2-4436-b185-79ffdb2864c7 | Status: 302 | Duration: 90ms
+2025-12-13 14:41:50 - Request: POST /products/update/54008395-963a-46d7-82e3-16e1ff744615 | Status: 302 | Duration: 137ms
+2025-12-13 14:41:50 - Request: POST /products/update-sales/553589ac-8ef4-40d7-84db-f82d839757b5 | Status: 200 | Duration: 20ms
+2025-12-13 14:41:52 - Request: GET /products | Status: 200 | Duration: 1598ms
+2025-12-13 14:41:52 - Request: POST /products/update-sales/667c17be-65e5-49b4-8839-cdc31c3f2f97 | Status: 302 | Duration: 4ms
+2025-12-13 14:41:52 - Request: POST /products/update-sales/00a08bc9-f9a9-4f2f-ae9f-fe8f43aa00ab | Status: 200 | Duration: 2ms
+2025-12-13 14:41:52 - Request: GET /products | Status: 302 | Duration: 2ms
+2025-12-13 14:41:52 - Request: POST /products/update/10cc0483-912b-4492-94ff-5d677389b8e3 | Status: 200 | Duration: 63ms
+2025-12-13 14:41:52 - Request: POST /products/update-sales/2cc266f7-11fb-4539-9ab5-84718ebf88f5 | Status: 302 | Duration: 0ms
+2025-12-13 14:41:52 - Request: POST /products/update-sales/eea4b8e6-b30d-4881-a04f-b319c852f905 | Status: 302 | Duration: 3ms
+2025-12-13 14:41:52 - Request: POST /products/update/2aa4c6e9-827c-4afd-9b4d-209653452bdd | Status: 200 | Duration: 5ms
+2025-12-13 14:41:52 - Request: POST /products/update/3e7b6bc9-b1a4-4ee3-9632-147791323acc | Status: 302 | Duration: 0ms
+2025-12-13 14:41:52 - Request: POST /products/update/375203be-4036-4548-851a-9d0eeae1624a | Status: 200 | Duration: 3ms
+2025-12-13 14:41:52 - Request: POST /products/create | Status: 302 | Duration: 6ms
+2025-12-13 14:41:52 - Request: GET /products/detail/95876463-948e-4d2a-a070-966e0d3a6f17 | Status: 302 | Duration: 1ms
+2025-12-13 14:41:52 - Request: POST /products/update-image/cf856414-ac32-4bc9-a31e-47610348e15a | Status: 200 | Duration: 4ms
+2025-12-13 14:41:52 - Request: GET /products/confirm-delete/217269ed-7b34-430a-b2a1-ac704605b4c2 | Status: 302 | Duration: 3ms
+2025-12-13 14:41:52 - Request: POST /products/delete/4ae76d94-7856-434a-b41f-52ba8309b992 | Status: 302 | Duration: 1ms
+2025-12-13 14:41:52 - Request: GET /products/detail/d31e4d6f-f52a-4b37-a35c-f6f88c3a956c | Status: 200 | Duration: 42ms
+2025-12-13 14:41:52 - Request: GET /products/edit-image/7daa7f42-e365-4e1f-9b12-029294e19e02 | Status: 302 | Duration: 2ms
+2025-12-13 14:41:52 - Request: POST /products/create | Status: 302 | Duration: 0ms
+2025-12-13 14:41:52 - Request: POST /products/update/8e20c3e0-b4a0-4d1c-af5a-c803308a8c93 | Status: 302 | Duration: 4ms
+2025-12-13 14:41:52 - Request: POST /products/create | Status: 302 | Duration: 3ms
+2025-12-13 14:41:52 - Request: GET /products/edit/36d91bd4-3a78-4c79-a532-8e0f04e49936 | Status: 302 | Duration: 1ms
+2025-12-13 14:41:52 - Request: POST /products/update/907a7681-329f-446e-9e51-586dbeaf3275 | Status: 302 | Duration: 6ms
+2025-12-13 14:41:52 - Request: POST /products/update/91ec2b7d-30ee-45e4-885f-061a3cbeef99 | Status: 302 | Duration: 6ms
+2025-12-13 14:41:52 - Request: GET /products/edit-image/63ef05c5-3bd8-43c1-a7c7-b8a86a475ca7 | Status: 200 | Duration: 26ms
+2025-12-13 14:41:52 - Request: POST /products/update-image/3caeaabd-ff26-4ee6-8773-0632215ec87e | Status: 302 | Duration: 1ms
+2025-12-13 14:41:52 - Request: POST /products/create | Status: 302 | Duration: 5ms
+2025-12-13 14:41:52 - Request: GET /products/update-sales/247d854f-994a-4d4f-a7bc-eb0fee32185e | Status: 302 | Duration: 2ms
+2025-12-13 14:41:52 - Request: POST /products/update-image/cead9ee2-d91c-45fb-97cf-cf884e55d917 | Status: 302 | Duration: 4ms
+2025-12-13 14:41:53 - Request: GET /products/create | Status: 200 | Duration: 14ms
+2025-12-13 14:41:53 - Request: GET /products/confirm-delete/43af335c-1b9d-47e8-b214-f18340804fe5 | Status: 302 | Duration: 0ms
+2025-12-13 14:41:53 - Request: POST /products/update/cd083761-7223-49e1-9862-803719297149 | Status: 302 | Duration: 4ms
+2025-12-13 14:41:53 - Request: POST /products/update/903b60c2-7ac7-45ca-8d0f-875b6e3ac019 | Status: 302 | Duration: 4ms
+2025-12-13 14:41:53 - Request: GET /products/confirm-delete/aa7dc149-5202-448e-af49-42c826cd10a6 | Status: 200 | Duration: 6ms
+2025-12-13 14:41:53 - Request: POST /products/update-image/ce3b6587-5f6c-4732-ac39-067e1bfe704c | Status: 302 | Duration: 3ms
+2025-12-13 14:41:53 - Request: POST /products/update-image/41892c81-4de6-4bb4-adfd-13623c25195d | Status: 302 | Duration: 2ms
+2025-12-13 14:41:53 - Request: GET /products/edit/9749f1d1-c05c-4f7b-90ed-456af59fef78 | Status: 302 | Duration: 2ms
+2025-12-13 14:41:53 - Request: POST /products/create | Status: 302 | Duration: 4ms
+2025-12-13 14:41:53 - Request: GET /products/update-sales/6877cede-0c98-420f-aae8-a56bf76cd251 | Status: 302 | Duration: 0ms
+2025-12-13 14:41:53 - Request: GET /products/update-sales/4661c7a7-095f-4eb2-b9a1-0570e73282e1 | Status: 200 | Duration: 11ms
+2025-12-13 14:41:53 - Request: POST /products/create | Status: 302 | Duration: 2ms
+2025-12-13 14:41:53 - Request: POST /products/create | Status: 200 | Duration: 10ms
+2025-12-13 14:41:53 - Request: GET /products/edit/8e83447d-60ec-452d-98ee-4f07b0fda7bf | Status: 200 | Duration: 14ms
+2025-12-13 14:41:53 - Could not detect default configuration classes for test class [com.bakery.repository.AuthTokenRepositoryTest]: AuthTokenRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:41:53 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.AuthTokenRepositoryTest
+2025-12-13 14:41:53 - Starting AuthTokenRepositoryTest using Java 17.0.17 with PID 1228 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:41:53 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:41:53 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:41:53 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:41:53 - Finished Spring Data repository scanning in 33 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:41:53 - Replacing 'dataSource' DataSource bean with embedded version
+2025-12-13 14:41:53 - Starting embedded database: url='jdbc:h2:mem:6f5185f8-4388-4b18-a422-30cddc90bee5;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-12-13 14:41:53 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:41:53 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:41:54 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:41:54 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:41:54 - 
+    create table auth_tokens (
+        id uuid not null,
+        created_at timestamp(6),
+        token varchar(255) not null,
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:41:54 - 
+    create table products (
+        id uuid not null,
+        category varchar(255) not null,
+        created_at timestamp(6),
+        description TEXT,
+        image_url varchar(255),
+        is_available boolean,
+        price float(53) not null,
+        product_name varchar(255) not null,
+        sold_count integer,
+        stock integer not null,
+        updated_at timestamp(6),
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:41:54 - 
+    create table users (
+        id uuid not null,
+        created_at timestamp(6),
+        email varchar(255) not null,
+        name varchar(255) not null,
+        password varchar(255) not null,
+        updated_at timestamp(6),
+        primary key (id)
+    )
+2025-12-13 14:41:54 - 
+    alter table if exists auth_tokens 
+       drop constraint if exists UK_8eqyhmaqeqakfjut8vpdfm6cr
+2025-12-13 14:41:54 - 
+    alter table if exists auth_tokens 
+       add constraint UK_8eqyhmaqeqakfjut8vpdfm6cr unique (token)
+2025-12-13 14:41:54 - 
+    alter table if exists users 
+       drop constraint if exists UK_6dotkott2kjsp8vw4d0m25fb7
+2025-12-13 14:41:54 - 
+    alter table if exists users 
+       add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2025-12-13 14:41:54 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:41:54 - Started AuthTokenRepositoryTest in 0.965 seconds (process running for 26.953)
+2025-12-13 14:41:54 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:54 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    update
+        auth_tokens 
+    set
+        created_at=?,
+        token=?,
+        user_id=? 
+    where
+        id=?
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.user_id=?
+2025-12-13 14:41:55 - 
+    delete 
+    from
+        auth_tokens 
+    where
+        id=?
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.user_id=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - 
+    delete 
+    from
+        auth_tokens 
+    where
+        id=?
+2025-12-13 14:41:55 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:41:55 - Could not detect default configuration classes for test class [com.bakery.repository.ProductRepositoryTest]: ProductRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:41:55 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.ProductRepositoryTest
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    update
+        products 
+    set
+        category=?,
+        created_at=?,
+        description=?,
+        image_url=?,
+        is_available=?,
+        price=?,
+        product_name=?,
+        sold_count=?,
+        stock=?,
+        updated_at=?,
+        user_id=? 
+    where
+        id=?
+2025-12-13 14:41:55 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    delete 
+    from
+        products 
+    where
+        id=?
+2025-12-13 14:41:55 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+2025-12-13 14:41:55 - Could not detect default configuration classes for test class [com.bakery.repository.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:41:55 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.UserRepositoryTest
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:55 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    update
+        users 
+    set
+        created_at=?,
+        email=?,
+        name=?,
+        password=?,
+        updated_at=? 
+    where
+        id=?
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    update
+        users 
+    set
+        created_at=?,
+        email=?,
+        name=?,
+        password=?,
+        updated_at=? 
+    where
+        id=?
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:41:56 - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-12-13 14:41:57 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:41:57 - HikariPool-1 - Shutdown initiated...
+2025-12-13 14:41:57 - HikariPool-1 - Shutdown completed.
+2025-12-13 14:41:57 - RequestLoggingFilter destroyed
+2025-12-13 14:41:57 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:41:57 - HikariPool-2 - Shutdown initiated...
+2025-12-13 14:41:57 - HikariPool-2 - Shutdown completed.
+2025-12-13 14:41:57 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:42:46 - Starting BakeryApplicationTest using Java 17.0.17 with PID 5480 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:42:46 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:42:46 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:42:47 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:42:48 - Finished Spring Data repository scanning in 142 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:42:49 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:42:49 - HHH000412: Hibernate ORM core version 6.2.22.Final
+2025-12-13 14:42:49 - HHH000406: Using bytecode reflection optimizer
+2025-12-13 14:42:50 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:42:50 - HikariPool-1 - Starting...
+2025-12-13 14:42:51 - HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/db_bakery_pbo user=SA
+2025-12-13 14:42:51 - HikariPool-1 - Start completed.
+2025-12-13 14:42:51 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:42:53 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:42:53 - 
+    alter table if exists products 
+       alter column description set data type TEXT
+2025-12-13 14:42:53 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:42:55 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-13 14:42:55 - Adding welcome page template: index
+2025-12-13 14:42:55 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/db_bakery_pbo'
+2025-12-13 14:42:55 - Started BakeryApplicationTest in 10.452 seconds (process running for 14.26)
+2025-12-13 14:42:55 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080/
+? External URL: http://172.28.41.115:8080/
+?? H2 Console: http://localhost:8080//h2-console
+========================================
+2025-12-13 14:42:56 - Starting BakeryApplication using Java 17.0.17 with PID 5480 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:42:56 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:42:56 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:42:57 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:42:57 - Finished Spring Data repository scanning in 38 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:42:57 - Tomcat initialized with port(s): 8080 (http)
+2025-12-13 14:42:57 - Starting service [Tomcat]
+2025-12-13 14:42:57 - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-12-13 14:42:58 - Initializing Spring embedded WebApplicationContext
+2025-12-13 14:42:58 - Root WebApplicationContext: initialization completed in 1286 ms
+2025-12-13 14:42:58 - HikariPool-2 - Starting...
+2025-12-13 14:42:58 - HikariPool-2 - Added connection conn10: url=jdbc:h2:file:./data/db_bakery_pbo user=SA
+2025-12-13 14:42:58 - HikariPool-2 - Start completed.
+2025-12-13 14:42:58 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/db_bakery_pbo'
+2025-12-13 14:42:58 - RequestLoggingFilter initialized
+2025-12-13 14:42:58 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:42:58 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:42:58 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:42:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:42:58 - 
+    alter table if exists products 
+       alter column description set data type TEXT
+2025-12-13 14:42:58 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:42:58 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-13 14:42:58 - Adding welcome page template: index
+2025-12-13 14:42:59 - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-13 14:42:59 - Started BakeryApplication in 2.217 seconds (process running for 17.427)
+2025-12-13 14:42:59 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080/
+? External URL: http://172.28.41.115:8080/
+?? H2 Console: http://localhost:8080//h2-console
+========================================
+2025-12-13 14:43:00 - RequestLoggingFilter initialized
+2025-12-13 14:43:00 - RequestLoggingFilter destroyed
+2025-12-13 14:43:00 - Request: GET /test | Status: 200 | Duration: 0ms
+2025-12-13 14:43:00 - Request: POST /api/test | Status: 500 | Duration: 1ms
+2025-12-13 14:43:01 - Failed to determine host address
+java.net.UnknownHostException: Test Exception
+	at com.bakery.config.StartupInfoLogger.getHostAddress(StartupInfoLogger.java:57)
+	at com.bakery.config.StartupInfoLogger.logApplicationStartup(StartupInfoLogger.java:29)
+	at com.bakery.config.StartupInfoLogger.logApplicationStartup(StartupInfoLogger.java:26)
+	at com.bakery.config.StartupInfoLoggerTest.testLogApplicationStartup_UnknownHostException(StartupInfoLoggerTests.java:69)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:147)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:127)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:90)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:55)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:102)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+2025-12-13 14:43:01 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080
+? External URL: http://172.28.41.115:8080
+?? H2 Console: http://localhost:8080/h2-console
+========================================
+2025-12-13 14:43:01 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: prod
+? Local URL: https://localhost:8443/api
+? External URL: https://172.28.41.115:8443/api
+?? H2 Console: https://localhost:8443/api/h2-console
+========================================
+2025-12-13 14:43:02 - Could not detect default configuration classes for test class [com.bakery.controller.ProductControllerTest]: ProductControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:43:02 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.controller.ProductControllerTest
+2025-12-13 14:43:02 - Starting ProductControllerTest using Java 17.0.17 with PID 5480 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:43:02 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:43:02 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:43:03 - Adding welcome page template: index
+2025-12-13 14:43:03 - Initializing Spring TestDispatcherServlet ''
+2025-12-13 14:43:03 - Initializing Servlet ''
+2025-12-13 14:43:03 - Completed initialization in 3 ms
+2025-12-13 14:43:03 - Started ProductControllerTest in 1.023 seconds (process running for 21.59)
+2025-12-13 14:43:03 - Request: GET /products/create | Status: 302 | Duration: 73ms
+2025-12-13 14:43:03 - Request: POST /products/delete/97c5b62f-2f33-48d5-ba33-503e5f8835a2 | Status: 302 | Duration: 1ms
+2025-12-13 14:43:03 - Request: GET /products/edit-image/e802a012-9a28-4f1b-b190-76c2797502a6 | Status: 302 | Duration: 0ms
+2025-12-13 14:43:03 - Request: GET /products/detail/b8f998cc-9bf9-459a-93aa-9539eff84712 | Status: 302 | Duration: 82ms
+2025-12-13 14:43:03 - Request: POST /products/update/01d8f075-e8f8-4eac-98f2-04d2e5eaeb88 | Status: 302 | Duration: 134ms
+2025-12-13 14:43:03 - Request: POST /products/update-sales/f03c92d3-3820-4f2c-8c85-1503933ebb3c | Status: 200 | Duration: 17ms
+2025-12-13 14:43:05 - Request: GET /products | Status: 200 | Duration: 1437ms
+2025-12-13 14:43:05 - Request: POST /products/update-sales/ddb1a37d-c712-4fa6-b47d-b07173c96652 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: POST /products/update-sales/8439d380-03a8-4e83-91ad-32ded40a96db | Status: 200 | Duration: 2ms
+2025-12-13 14:43:05 - Request: GET /products | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/update/d7b94d9e-e8af-42b8-8f94-3e0e88142d00 | Status: 200 | Duration: 90ms
+2025-12-13 14:43:05 - Request: POST /products/update-sales/3434fd73-47b4-4b47-9ad3-0039588d8b00 | Status: 302 | Duration: 0ms
+2025-12-13 14:43:05 - Request: POST /products/update-sales/6e511802-c4ac-4255-a4bb-4b611fc97161 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: POST /products/update/31ab30ad-ae3b-4a89-b2a1-11bd4a426cce | Status: 200 | Duration: 5ms
+2025-12-13 14:43:05 - Request: POST /products/update/fd4a8549-1f87-41f0-b26d-01f958c159cf | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/update/3ca5b41b-d72c-43d0-a5f2-f680481d1697 | Status: 200 | Duration: 3ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 7ms
+2025-12-13 14:43:05 - Request: GET /products/detail/b4641040-3e24-4382-9c17-600212398398 | Status: 302 | Duration: 0ms
+2025-12-13 14:43:05 - Request: POST /products/update-image/0b7b4dbd-47ca-4bad-b5ae-c0806621d59d | Status: 200 | Duration: 5ms
+2025-12-13 14:43:05 - Request: GET /products/confirm-delete/8b25b5c4-3082-4b68-9c67-86e158b18653 | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/delete/3e109baa-60bd-4d4f-bbf1-41b2ae58b7d4 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: GET /products/detail/c7eda7ed-7526-4716-ae0b-b4755aff5414 | Status: 200 | Duration: 76ms
+2025-12-13 14:43:05 - Request: GET /products/edit-image/7a7adbfb-f3b1-49a4-875c-b7d6658f12c2 | Status: 302 | Duration: 1ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 0ms
+2025-12-13 14:43:05 - Request: POST /products/update/109d28dd-6e6f-48b7-87f4-c14a7d153707 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: GET /products/edit/01262df4-964c-4e28-af44-ead11201af54 | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/update/055b6e07-70c9-4487-b11b-657466aca7a8 | Status: 302 | Duration: 4ms
+2025-12-13 14:43:05 - Request: POST /products/update/9cc707e8-5d99-460a-9bd0-68ddd458cc88 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: GET /products/edit-image/be2b2b4d-7078-4f60-8599-67ade78a6d25 | Status: 200 | Duration: 80ms
+2025-12-13 14:43:05 - Request: POST /products/update-image/e564060c-c96b-410c-bb91-68791446f125 | Status: 302 | Duration: 0ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 4ms
+2025-12-13 14:43:05 - Request: GET /products/update-sales/c26137f2-1f0c-4810-bb91-2eada25b9ed9 | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/update-image/683a854c-d40a-424d-ad26-17f1fb5e8eae | Status: 302 | Duration: 1ms
+2025-12-13 14:43:05 - Request: GET /products/create | Status: 200 | Duration: 15ms
+2025-12-13 14:43:05 - Request: GET /products/confirm-delete/1843ace2-a140-424a-a7ca-e51bd1cf82b7 | Status: 302 | Duration: 1ms
+2025-12-13 14:43:05 - Request: POST /products/update/d40e4a0a-7428-4dcb-ac27-3e58f20d7837 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: POST /products/update/ab3d7cbe-e541-4199-a7bf-781def137a36 | Status: 302 | Duration: 5ms
+2025-12-13 14:43:05 - Request: GET /products/confirm-delete/942d5c4e-1340-408a-b156-2075c7e6f823 | Status: 200 | Duration: 8ms
+2025-12-13 14:43:05 - Request: POST /products/update-image/020855cc-53ce-40c8-b2a9-4dabb5ef9eaa | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/update-image/3448cad2-f363-404f-997d-9c201b1b8c45 | Status: 302 | Duration: 3ms
+2025-12-13 14:43:05 - Request: GET /products/edit/f3b048f6-abe3-432c-bd9e-24871929991c | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 4ms
+2025-12-13 14:43:05 - Request: GET /products/update-sales/25bec382-77e8-454e-ba22-ca616323ed65 | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: GET /products/update-sales/50b37406-57eb-442d-94b6-8af50d97fc03 | Status: 200 | Duration: 16ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 302 | Duration: 2ms
+2025-12-13 14:43:05 - Request: POST /products/create | Status: 200 | Duration: 10ms
+2025-12-13 14:43:05 - Request: GET /products/edit/1842bd4c-6832-4b57-9713-97d52492a19f | Status: 200 | Duration: 15ms
+2025-12-13 14:43:06 - Could not detect default configuration classes for test class [com.bakery.repository.AuthTokenRepositoryTest]: AuthTokenRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:43:06 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.AuthTokenRepositoryTest
+2025-12-13 14:43:06 - Starting AuthTokenRepositoryTest using Java 17.0.17 with PID 5480 (started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:43:06 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:43:06 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:43:06 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:43:06 - Finished Spring Data repository scanning in 32 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:43:06 - Replacing 'dataSource' DataSource bean with embedded version
+2025-12-13 14:43:06 - Starting embedded database: url='jdbc:h2:mem:4c763346-aaac-40aa-ad67-21b5b11e6760;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-12-13 14:43:06 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:43:06 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:43:06 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:43:06 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:43:06 - 
+    create table auth_tokens (
+        id uuid not null,
+        created_at timestamp(6),
+        token varchar(255) not null,
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:43:06 - 
+    create table products (
+        id uuid not null,
+        category varchar(255) not null,
+        created_at timestamp(6),
+        description TEXT,
+        image_url varchar(255),
+        is_available boolean,
+        price float(53) not null,
+        product_name varchar(255) not null,
+        sold_count integer,
+        stock integer not null,
+        updated_at timestamp(6),
+        user_id uuid not null,
+        primary key (id)
+    )
+2025-12-13 14:43:07 - 
+    create table users (
+        id uuid not null,
+        created_at timestamp(6),
+        email varchar(255) not null,
+        name varchar(255) not null,
+        password varchar(255) not null,
+        updated_at timestamp(6),
+        primary key (id)
+    )
+2025-12-13 14:43:07 - 
+    alter table if exists auth_tokens 
+       drop constraint if exists UK_8eqyhmaqeqakfjut8vpdfm6cr
+2025-12-13 14:43:07 - 
+    alter table if exists auth_tokens 
+       add constraint UK_8eqyhmaqeqakfjut8vpdfm6cr unique (token)
+2025-12-13 14:43:07 - 
+    alter table if exists users 
+       drop constraint if exists UK_6dotkott2kjsp8vw4d0m25fb7
+2025-12-13 14:43:07 - 
+    alter table if exists users 
+       add constraint UK_6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2025-12-13 14:43:07 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:43:07 - Started AuthTokenRepositoryTest in 0.988 seconds (process running for 25.615)
+2025-12-13 14:43:07 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:07 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:07 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    update
+        auth_tokens 
+    set
+        created_at=?,
+        token=?,
+        user_id=? 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.user_id=?
+2025-12-13 14:43:08 - 
+    delete 
+    from
+        auth_tokens 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.user_id=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        auth_tokens
+        (created_at,token,user_id,id) 
+    values
+        (?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - 
+    delete 
+    from
+        auth_tokens 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        a1_0.id,
+        a1_0.created_at,
+        a1_0.token,
+        a1_0.user_id 
+    from
+        auth_tokens a1_0 
+    where
+        a1_0.token=?
+2025-12-13 14:43:08 - Could not detect default configuration classes for test class [com.bakery.repository.ProductRepositoryTest]: ProductRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:43:08 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.ProductRepositoryTest
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    update
+        products 
+    set
+        category=?,
+        created_at=?,
+        description=?,
+        image_url=?,
+        is_available=?,
+        price=?,
+        product_name=?,
+        sold_count=?,
+        stock=?,
+        updated_at=?,
+        user_id=? 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    delete 
+    from
+        products 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.id=?
+2025-12-13 14:43:08 - Could not detect default configuration classes for test class [com.bakery.repository.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-13 14:43:08 - Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.repository.UserRepositoryTest
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    update
+        users 
+    set
+        created_at=?,
+        email=?,
+        name=?,
+        password=?,
+        updated_at=? 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    update
+        users 
+    set
+        created_at=?,
+        email=?,
+        name=?,
+        password=?,
+        updated_at=? 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:08 - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-12-13 14:43:09 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:43:10 - HikariPool-1 - Shutdown initiated...
+2025-12-13 14:43:10 - HikariPool-1 - Shutdown completed.
+2025-12-13 14:43:10 - RequestLoggingFilter destroyed
+2025-12-13 14:43:10 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:43:10 - HikariPool-2 - Shutdown initiated...
+2025-12-13 14:43:10 - HikariPool-2 - Shutdown completed.
+2025-12-13 14:43:10 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:43:34 - Starting BakeryApplication using Java 17.0.17 with PID 11172 (C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek\target\classes started by ASUS in C:\ifs24048-pbo-proyek\ifs24048-pbo-proyek)
+2025-12-13 14:43:34 - Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-13 14:43:34 - No active profile set, falling back to 1 default profile: "default"
+2025-12-13 14:43:35 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-13 14:43:35 - Finished Spring Data repository scanning in 89 ms. Found 3 JPA repository interfaces.
+2025-12-13 14:43:36 - Tomcat initialized with port(s): 8080 (http)
+2025-12-13 14:43:36 - Starting service [Tomcat]
+2025-12-13 14:43:36 - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-12-13 14:43:36 - Initializing Spring embedded WebApplicationContext
+2025-12-13 14:43:36 - Root WebApplicationContext: initialization completed in 1978 ms
+2025-12-13 14:43:36 - HikariPool-1 - Starting...
+2025-12-13 14:43:36 - HikariPool-1 - Added connection conn0: url=jdbc:h2:file:./data/db_bakery_pbo user=SA
+2025-12-13 14:43:36 - HikariPool-1 - Start completed.
+2025-12-13 14:43:36 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:./data/db_bakery_pbo'
+2025-12-13 14:43:36 - RequestLoggingFilter initialized
+2025-12-13 14:43:36 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-13 14:43:37 - HHH000412: Hibernate ORM core version 6.2.22.Final
+2025-12-13 14:43:37 - HHH000406: Using bytecode reflection optimizer
+2025-12-13 14:43:37 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-13 14:43:37 - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-13 14:43:38 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-13 14:43:39 - 
+    alter table if exists products 
+       alter column description set data type TEXT
+2025-12-13 14:43:39 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-13 14:43:39 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-13 14:43:39 - Adding welcome page template: index
+2025-12-13 14:43:40 - Tomcat started on port(s): 8080 (http) with context path ''
+2025-12-13 14:43:40 - Started BakeryApplication in 6.516 seconds (process running for 7.102)
+2025-12-13 14:43:40 - 
+========================================
+? BAKERY SALES MANAGER STARTED SUCCESSFULLY!
+========================================
+? Application: Mimi's Bakery
+? Profile: default
+? Local URL: http://localhost:8080/
+? External URL: http://172.28.41.115:8080/
+?? H2 Console: http://localhost:8080//h2-console
+========================================
+2025-12-13 14:43:45 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-13 14:43:45 - Initializing Servlet 'dispatcherServlet'
+2025-12-13 14:43:45 - Completed initialization in 1 ms
+2025-12-13 14:43:45 - Request: GET / | Status: 302 | Duration: 75ms
+2025-12-13 14:43:45 - Request: GET /dashboard | Status: 302 | Duration: 0ms
+2025-12-13 14:43:45 - Request: GET /login | Status: 200 | Duration: 536ms
+2025-12-13 14:43:46 - Request: GET /favicon.ico | Status: 404 | Duration: 12ms
+2025-12-13 14:43:46 - [THYMELEAF][http-nio-8080-exec-4] Exception processing template "error": Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-13 14:43:46 - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-13 14:43:46 - Exception Processing [ErrorPage[errorCode=0, location=/error]]
+jakarta.servlet.ServletException: Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	... 35 common frames omitted
+2025-12-13 14:43:47 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:47 - Request: POST /login | Status: 200 | Duration: 336ms
+2025-12-13 14:43:49 - Request: GET /register;jsessionid=82E6ACDF9EC445C651CEC436FF745532 | Status: 200 | Duration: 14ms
+2025-12-13 14:43:52 - 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-12-13 14:43:52 - 
+    insert 
+    into
+        users
+        (created_at,email,name,password,updated_at,id) 
+    values
+        (?,?,?,?,?,?)
+2025-12-13 14:43:52 - Request: POST /register | Status: 302 | Duration: 108ms
+2025-12-13 14:43:52 - Request: GET /login | Status: 200 | Duration: 9ms
+2025-12-13 14:43:54 - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.name,
+        u1_0.password,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-12-13 14:43:54 - Request: POST /login | Status: 302 | Duration: 23ms
+2025-12-13 14:43:54 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.user_id=?
+2025-12-13 14:43:54 - Request: GET /dashboard | Status: 200 | Duration: 146ms
+2025-12-13 14:43:57 - Request: GET /products/create | Status: 200 | Duration: 15ms
+2025-12-13 14:44:16 - 
+    insert 
+    into
+        products
+        (category,created_at,description,image_url,is_available,price,product_name,sold_count,stock,updated_at,user_id,id) 
+    values
+        (?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-13 14:44:16 - 
+    update
+        products 
+    set
+        category=?,
+        created_at=?,
+        description=?,
+        image_url=?,
+        is_available=?,
+        price=?,
+        product_name=?,
+        sold_count=?,
+        stock=?,
+        updated_at=?,
+        user_id=? 
+    where
+        id=?
+2025-12-13 14:44:16 - Request: POST /products/create | Status: 302 | Duration: 168ms
+2025-12-13 14:44:16 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.user_id=?
+2025-12-13 14:44:16 - Request: GET /products | Status: 200 | Duration: 72ms
+2025-12-13 14:44:16 - Request: GET /uploads/8bf0a69d-8ce3-40da-ae2f-ae5c13f93090_download%20(8).jpeg | Status: 200 | Duration: 38ms
+2025-12-13 14:44:27 - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2025-12-13 14:44:27 - Request: GET /products/delete/c30dde5e-d012-428b-a048-388dd17f49cc | Status: 405 | Duration: 6ms
+2025-12-13 14:44:27 - [THYMELEAF][http-nio-8080-exec-5] Exception processing template "error": Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-13 14:44:27 - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-12-13 14:44:27 - Exception Processing [ErrorPage[errorCode=0, location=/error]]
+jakarta.servlet.ServletException: Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:642)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:410)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:340)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:277)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:362)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:222)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:151)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1415)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1159)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	... 35 common frames omitted
+2025-12-13 14:44:33 - 
+    select
+        p1_0.id,
+        p1_0.category,
+        p1_0.created_at,
+        p1_0.description,
+        p1_0.image_url,
+        p1_0.is_available,
+        p1_0.price,
+        p1_0.product_name,
+        p1_0.sold_count,
+        p1_0.stock,
+        p1_0.updated_at,
+        p1_0.user_id 
+    from
+        products p1_0 
+    where
+        p1_0.user_id=?
+2025-12-13 14:44:33 - Request: GET /dashboard | Status: 200 | Duration: 46ms
+2025-12-13 14:44:33 - Request: GET /uploads/8bf0a69d-8ce3-40da-ae2f-ae5c13f93090_download%20(8).jpeg | Status: 304 | Duration: 3ms
