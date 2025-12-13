@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.bakery.config.AuthInterceptorTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.497 s -- in com.bakery.config.AuthInterceptorTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.211 s -- in com.bakery.config.AuthInterceptorTest

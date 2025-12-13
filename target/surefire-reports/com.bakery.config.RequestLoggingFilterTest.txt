@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.bakery.config.RequestLoggingFilterTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.266 s -- in com.bakery.config.RequestLoggingFilterTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.240 s -- in com.bakery.config.RequestLoggingFilterTest
