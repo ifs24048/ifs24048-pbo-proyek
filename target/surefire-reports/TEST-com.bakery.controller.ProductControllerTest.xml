@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.bakery.controller.ProductControllerTest" time="4.156" tests="48" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo\target\test-classes;c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo\target\classes;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.1.9\spring-boot-starter-validation-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter\3.1.9\spring-boot-starter-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot\3.1.9\spring-boot-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.1.9\spring-boot-autoconfigure-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.1.9\spring-boot-starter-logging-3.1.9.jar;C:\Users\flavi\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\flavi\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\flavi\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.20.0\log4j-to-slf4j-2.20.0.jar;C:\Users\flavi\.m2\repository\org\apache\logging\log4j\log4j-api\2.20.0\log4j-api-2.20.0.jar;C:\Users\flavi\.m2\repository\org\slf4j\jul-to-slf4j\2.0.12\jul-to-slf4j-2.0.12.jar;C:\Users\flavi\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\flavi\.m2\repository\org\yaml\snakeyaml\1.33\snakeyaml-1.33.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.19\tomcat-embed-el-10.1.19.jar;C:\Users\flavi\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\flavi\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\flavi\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\flavi\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.1.9\spring-boot-starter-web-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.1.9\spring-boot-starter-json-3.1.9.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.4\jackson-databind-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.4\jackson-annotations-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.4\jackson-core-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.1.9\spring-boot-starter-tomcat-3.1.9.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.19\tomcat-embed-core-10.1.19.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.19\tomcat-embed-websocket-10.1.19.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-web\6.0.17\spring-web-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-beans\6.0.17\spring-beans-6.0.17.jar;C:\Users\flavi\.m2\repository\io\micrometer\micrometer-observation\1.11.9\micrometer-observation-1.11.9.jar;C:\Users\flavi\.m2\repository\io\micrometer\micrometer-commons\1.11.9\micrometer-commons-1.11.9.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-webmvc\6.0.17\spring-webmvc-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-aop\6.0.17\spring-aop-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-context\6.0.17\spring-context-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-expression\6.0.17\spring-expression-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.1.9\spring-boot-starter-data-jpa-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.1.9\spring-boot-starter-aop-3.1.9.jar;C:\Users\flavi\.m2\repository\org\aspectj\aspectjweaver\1.9.21\aspectjweaver-1.9.21.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.1.9\spring-boot-starter-jdbc-3.1.9.jar;C:\Users\flavi\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-jdbc\6.0.17\spring-jdbc-6.0.17.jar;C:\Users\flavi\.m2\repository\org\hibernate\orm\hibernate-core\6.2.22.Final\hibernate-core-6.2.22.Final.jar;C:\Users\flavi\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\flavi\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\flavi\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\flavi\.m2\repository\io\smallrye\jandex\3.0.5\jandex-3.0.5.jar;C:\Users\flavi\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.4\jaxb-runtime-4.0.4.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.4\jaxb-core-4.0.4.jar;C:\Users\flavi\.m2\repository\org\eclipse\angus\angus-activation\2.0.1\angus-activation-2.0.1.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\txw2\4.0.4\txw2-4.0.4.jar;C:\Users\flavi\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\flavi\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\flavi\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\flavi\.m2\repository\org\springframework\data\spring-data-jpa\3.1.9\spring-data-jpa-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\data\spring-data-commons\3.1.9\spring-data-commons-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-orm\6.0.17\spring-orm-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-tx\6.0.17\spring-tx-6.0.17.jar;C:\Users\flavi\.m2\repository\org\slf4j\slf4j-api\2.0.12\slf4j-api-2.0.12.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-aspects\6.0.17\spring-aspects-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-thymeleaf\3.1.9\spring-boot-starter-thymeleaf-3.1.9.jar;C:\Users\flavi\.m2\repository\org\thymeleaf\thymeleaf-spring6\3.1.2.RELEASE\thymeleaf-spring6-3.1.2.RELEASE.jar;C:\Users\flavi\.m2\repository\org\thymeleaf\thymeleaf\3.1.2.RELEASE\thymeleaf-3.1.2.RELEASE.jar;C:\Users\flavi\.m2\repository\org\attoparser\attoparser\2.0.7.RELEASE\attoparser-2.0.7.RELEASE.jar;C:\Users\flavi\.m2\repository\org\unbescape\unbescape\1.1.6.RELEASE\unbescape-1.1.6.RELEASE.jar;C:\Users\flavi\.m2\repository\com\h2database\h2\2.1.214\h2-2.1.214.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.1.9\spring-boot-starter-test-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-test\3.1.9\spring-boot-test-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.1.9\spring-boot-test-autoconfigure-3.1.9.jar;C:\Users\flavi\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\flavi\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\flavi\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\flavi\.m2\repository\net\minidev\json-smart\2.4.11\json-smart-2.4.11.jar;C:\Users\flavi\.m2\repository\net\minidev\accessors-smart\2.4.11\accessors-smart-2.4.11.jar;C:\Users\flavi\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\flavi\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\flavi\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\flavi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\flavi\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\flavi\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\flavi\.m2\repository\org\mockito\mockito-core\5.3.1\mockito-core-5.3.1.jar;C:\Users\flavi\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\flavi\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\flavi\.m2\repository\org\mockito\mockito-junit-jupiter\5.3.1\mockito-junit-jupiter-5.3.1.jar;C:\Users\flavi\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\flavi\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-core\6.0.17\spring-core-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-jcl\6.0.17\spring-jcl-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-test\6.0.17\spring-test-6.0.17.jar;C:\Users\flavi\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="net.bytebuddy.experimental" value="true"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="catalina.useNaming" value="false"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Rome"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="user.country" value="IT"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
+    <property name="sun.java.command" value="C:\Users\flavi\AppData\Local\Temp\surefire8132465730350778640\surefirebooter-20251212124405066_3.jar C:\Users\flavi\AppData\Local\Temp\surefire8132465730350778640 2025-12-12T12-44-04_889-jvmRun1 surefire-20251212124405066_1tmp surefire_0-20251212124405066_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo\target\test-classes;c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo\target\classes;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.1.9\spring-boot-starter-validation-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter\3.1.9\spring-boot-starter-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot\3.1.9\spring-boot-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.1.9\spring-boot-autoconfigure-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.1.9\spring-boot-starter-logging-3.1.9.jar;C:\Users\flavi\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\flavi\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\flavi\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.20.0\log4j-to-slf4j-2.20.0.jar;C:\Users\flavi\.m2\repository\org\apache\logging\log4j\log4j-api\2.20.0\log4j-api-2.20.0.jar;C:\Users\flavi\.m2\repository\org\slf4j\jul-to-slf4j\2.0.12\jul-to-slf4j-2.0.12.jar;C:\Users\flavi\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\flavi\.m2\repository\org\yaml\snakeyaml\1.33\snakeyaml-1.33.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.19\tomcat-embed-el-10.1.19.jar;C:\Users\flavi\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\flavi\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\flavi\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\flavi\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.1.9\spring-boot-starter-web-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.1.9\spring-boot-starter-json-3.1.9.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.4\jackson-databind-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.4\jackson-annotations-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.4\jackson-core-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.4\jackson-datatype-jdk8-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.4\jackson-datatype-jsr310-2.15.4.jar;C:\Users\flavi\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.4\jackson-module-parameter-names-2.15.4.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.1.9\spring-boot-starter-tomcat-3.1.9.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.19\tomcat-embed-core-10.1.19.jar;C:\Users\flavi\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.19\tomcat-embed-websocket-10.1.19.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-web\6.0.17\spring-web-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-beans\6.0.17\spring-beans-6.0.17.jar;C:\Users\flavi\.m2\repository\io\micrometer\micrometer-observation\1.11.9\micrometer-observation-1.11.9.jar;C:\Users\flavi\.m2\repository\io\micrometer\micrometer-commons\1.11.9\micrometer-commons-1.11.9.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-webmvc\6.0.17\spring-webmvc-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-aop\6.0.17\spring-aop-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-context\6.0.17\spring-context-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-expression\6.0.17\spring-expression-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.1.9\spring-boot-starter-data-jpa-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.1.9\spring-boot-starter-aop-3.1.9.jar;C:\Users\flavi\.m2\repository\org\aspectj\aspectjweaver\1.9.21\aspectjweaver-1.9.21.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.1.9\spring-boot-starter-jdbc-3.1.9.jar;C:\Users\flavi\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-jdbc\6.0.17\spring-jdbc-6.0.17.jar;C:\Users\flavi\.m2\repository\org\hibernate\orm\hibernate-core\6.2.22.Final\hibernate-core-6.2.22.Final.jar;C:\Users\flavi\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\flavi\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\flavi\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\flavi\.m2\repository\io\smallrye\jandex\3.0.5\jandex-3.0.5.jar;C:\Users\flavi\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.4\jaxb-runtime-4.0.4.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.4\jaxb-core-4.0.4.jar;C:\Users\flavi\.m2\repository\org\eclipse\angus\angus-activation\2.0.1\angus-activation-2.0.1.jar;C:\Users\flavi\.m2\repository\org\glassfish\jaxb\txw2\4.0.4\txw2-4.0.4.jar;C:\Users\flavi\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\flavi\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\flavi\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\flavi\.m2\repository\org\springframework\data\spring-data-jpa\3.1.9\spring-data-jpa-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\data\spring-data-commons\3.1.9\spring-data-commons-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-orm\6.0.17\spring-orm-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-tx\6.0.17\spring-tx-6.0.17.jar;C:\Users\flavi\.m2\repository\org\slf4j\slf4j-api\2.0.12\slf4j-api-2.0.12.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-aspects\6.0.17\spring-aspects-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-thymeleaf\3.1.9\spring-boot-starter-thymeleaf-3.1.9.jar;C:\Users\flavi\.m2\repository\org\thymeleaf\thymeleaf-spring6\3.1.2.RELEASE\thymeleaf-spring6-3.1.2.RELEASE.jar;C:\Users\flavi\.m2\repository\org\thymeleaf\thymeleaf\3.1.2.RELEASE\thymeleaf-3.1.2.RELEASE.jar;C:\Users\flavi\.m2\repository\org\attoparser\attoparser\2.0.7.RELEASE\attoparser-2.0.7.RELEASE.jar;C:\Users\flavi\.m2\repository\org\unbescape\unbescape\1.1.6.RELEASE\unbescape-1.1.6.RELEASE.jar;C:\Users\flavi\.m2\repository\com\h2database\h2\2.1.214\h2-2.1.214.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.1.9\spring-boot-starter-test-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-test\3.1.9\spring-boot-test-3.1.9.jar;C:\Users\flavi\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.1.9\spring-boot-test-autoconfigure-3.1.9.jar;C:\Users\flavi\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar;C:\Users\flavi\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\flavi\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\flavi\.m2\repository\net\minidev\json-smart\2.4.11\json-smart-2.4.11.jar;C:\Users\flavi\.m2\repository\net\minidev\accessors-smart\2.4.11\accessors-smart-2.4.11.jar;C:\Users\flavi\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\flavi\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\flavi\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter\5.9.3\junit-jupiter-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.3\junit-jupiter-api-5.9.3.jar;C:\Users\flavi\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\flavi\.m2\repository\org\junit\platform\junit-platform-commons\1.9.3\junit-platform-commons-1.9.3.jar;C:\Users\flavi\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.9.3\junit-jupiter-params-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.3\junit-jupiter-engine-5.9.3.jar;C:\Users\flavi\.m2\repository\org\junit\platform\junit-platform-engine\1.9.3\junit-platform-engine-1.9.3.jar;C:\Users\flavi\.m2\repository\org\mockito\mockito-core\5.3.1\mockito-core-5.3.1.jar;C:\Users\flavi\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.12\byte-buddy-agent-1.14.12.jar;C:\Users\flavi\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\flavi\.m2\repository\org\mockito\mockito-junit-jupiter\5.3.1\mockito-junit-jupiter-5.3.1.jar;C:\Users\flavi\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\flavi\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-core\6.0.17\spring-core-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-jcl\6.0.17\spring-jcl-6.0.17.jar;C:\Users\flavi\.m2\repository\org\springframework\spring-test\6.0.17\spring-test-6.0.17.jar;C:\Users\flavi\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\flavi"/>
+    <property name="user.language" value="it"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-07-16"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="windows-1252"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="C:\Users\flavi\AppData\Local\Temp\surefire8132465730350778640\surefirebooter-20251212124405066_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.12+8-LTS-286"/>
+    <property name="user.name" value="flavi"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} - %msg%n"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="LOG_FILE" value="logs/bakery-app.log"/>
+    <property name="localRepository" value="C:\Users\flavi\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\flavi\AppData\Local\Temp\"/>
+    <property name="com.zaxxer.hikari.pool_number" value="2"/>
+    <property name="catalina.home" value="C:\Users\flavi\AppData\Local\Temp\tomcat.8080.6218453473380931585"/>
+    <property name="java.version" value="17.0.12"/>
+    <property name="user.dir" value="c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="13164"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="windows-1252"/>
+    <property name="catalina.base" value="C:\Users\flavi\AppData\Local\Temp\tomcat.8080.6218453473380931585"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\apache-maven-3.9.11-bin\apache-maven-3.9.11\bin;C:\Program Files\Git\cmd;C:\Users\flavi\AppData\Local\Microsoft\WindowsApps;C:\apache-maven-3.9.11-bin\apache-maven-3.9.11\bin;C:\Users\flavi\AppData\Local\Programs\Antigravity\bin;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="17.0.12+8-LTS-286"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="testShowCreateForm_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.199">
+    <system-out><![CDATA[2025-12-12T12:44:23.040+01:00  INFO 13164 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bakery.controller.ProductControllerTest]: ProductControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-12-12T12:44:23.221+01:00  INFO 13164 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bakery.BakeryApplication for test class com.bakery.controller.ProductControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.9)
+
+2025-12-12T12:44:23.359+01:00  INFO 13164 --- [           main] c.b.controller.ProductControllerTest     : Starting ProductControllerTest using Java 17.0.12 with PID 13164 (started by flavi in c:\Users\flavi\Desktop\ini yang bisa di akses proyek pbo\ini yang bisa di akses proyek pbo)
+2025-12-12T12:44:23.359+01:00 DEBUG 13164 --- [           main] c.b.controller.ProductControllerTest     : Running with Spring Boot v3.1.9, Spring v6.0.17
+2025-12-12T12:44:23.359+01:00  INFO 13164 --- [           main] c.b.controller.ProductControllerTest     : No active profile set, falling back to 1 default profile: "default"
+2025-12-12T12:44:24.778+01:00  INFO 13164 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-12-12T12:44:24.869+01:00  INFO 13164 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-12-12T12:44:24.872+01:00  INFO 13164 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-12-12T12:44:24.873+01:00  INFO 13164 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-12-12T12:44:24.898+01:00  INFO 13164 --- [           main] c.b.controller.ProductControllerTest     : Started ProductControllerTest in 1.668 seconds (process running for 19.655)
+2025-12-12T12:44:25.075+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/create | Status: 302 | Duration: 75ms
+]]></system-out>
+  </testcase>
+  <testcase name="testDeleteProduct_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.019">
+    <system-out><![CDATA[2025-12-12T12:44:25.112+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/delete/d3c397a2-76df-4093-98f6-6756ccfa24f7 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditImageForm_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.007">
+    <system-out><![CDATA[2025-12-12T12:44:25.139+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit-image/244b4f65-5435-4548-8ff0-eef1f647981a | Status: 302 | Duration: 0ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowProductDetail_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.195">
+    <system-out><![CDATA[2025-12-12T12:44:25.335+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/detail/d3f373a7-f37f-4141-b14e-5dceff7b9d3e | Status: 302 | Duration: 94ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_authenticatedAndSoldCountNull" classname="com.bakery.controller.ProductControllerTest" time="0.229">
+    <system-out><![CDATA[2025-12-12T12:44:25.561+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/6f02f9a5-159f-456c-8ff3-e9761314b661 | Status: 302 | Duration: 219ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateSales_otherException" classname="com.bakery.controller.ProductControllerTest" time="0.019">
+    <system-out><![CDATA[2025-12-12T12:44:25.588+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-sales/cfc68465-8c80-4926-9bae-d090fe62674d | Status: 200 | Duration: 13ms
+]]></system-out>
+  </testcase>
+  <testcase name="testListProducts_authenticated" classname="com.bakery.controller.ProductControllerTest" time="0.956">
+    <system-out><![CDATA[2025-12-12T12:44:26.543+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products | Status: 200 | Duration: 942ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateSales_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:26.560+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-sales/a434fa22-4508-401b-a047-aa6ca29f31d2 | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateSales_authenticatedAndOtherException" classname="com.bakery.controller.ProductControllerTest" time="0.011">
+    <system-out><![CDATA[2025-12-12T12:44:26.574+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-sales/77c3c53b-66f7-4766-9739-0ea576cb0ffe | Status: 200 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testListProducts_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.011">
+    <system-out><![CDATA[2025-12-12T12:44:26.584+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_authenticatedAndValidationErrors" classname="com.bakery.controller.ProductControllerTest" time="0.051">
+    <system-out><![CDATA[2025-12-12T12:44:26.639+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/436523dd-5c77-4b71-8429-4a27e9121669 | Status: 200 | Duration: 45ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateSales_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:26.648+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-sales/43ef59e6-df08-4620-957e-e2dcff4ade0c | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateSales_authenticatedAndSuccess" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:26.658+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-sales/86c834eb-129b-4c0a-96ac-a5189a0d560c | Status: 302 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_otherException" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:26.671+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/c51e62ae-592f-41e9-8b9e-622853324298 | Status: 200 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.004">
+    <system-out><![CDATA[2025-12-12T12:44:26.676+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/3992bd0e-0e94-4888-8510-7d5523fee0db | Status: 302 | Duration: 0ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_authenticatedAndOtherException" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:26.688+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/925a6a55-6cf3-439f-80b6-7262adf70627 | Status: 200 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_withEmptyImageFile" classname="com.bakery.controller.ProductControllerTest" time="0.019">
+    <system-out><![CDATA[2025-12-12T12:44:26.709+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 6ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowProductDetail_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.012">
+    <system-out><![CDATA[2025-12-12T12:44:26.717+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/detail/9ea81085-74d4-4781-8063-07dba2932e7a | Status: 302 | Duration: 0ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProductImage_authenticatedAndOtherException" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:26.732+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-image/544ed569-a24b-4b74-9fb9-6e2daaebe9af | Status: 200 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowDeleteConfirmation_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.006">
+    <system-out><![CDATA[2025-12-12T12:44:26.745+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/confirm-delete/5a8ecce9-54dc-40bf-8db4-5e710ef431fc | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testDeleteProduct_authenticatedAndSuccess" classname="com.bakery.controller.ProductControllerTest" time="0.006">
+    <system-out><![CDATA[2025-12-12T12:44:26.761+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/delete/c496a597-75d8-4867-8263-a1093710798d | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowProductDetail_authenticatedAndFound" classname="com.bakery.controller.ProductControllerTest" time="0.047">
+    <system-out><![CDATA[2025-12-12T12:44:26.810+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/detail/33dcdecd-f58d-4c9e-9d2e-24cbc02104a0 | Status: 200 | Duration: 42ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditImageForm_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:26.823+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit-image/0c4c1e0f-291e-4381-bbe7-9a45d7677e31 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.007">
+    <system-out><![CDATA[2025-12-12T12:44:26.828+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 0ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_soldCountNullAndNoExistingProduct" classname="com.bakery.controller.ProductControllerTest" time="0.0">
+    <system-out><![CDATA[2025-12-12T12:44:26.833+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/6e3c0413-5185-48f7-a1f7-9ef2ed82fd74 | Status: 302 | Duration: 0ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_withoutImageFile" classname="com.bakery.controller.ProductControllerTest" time="0.02">
+    <system-out><![CDATA[2025-12-12T12:44:26.850+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 17ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditForm_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.006">
+    <system-out><![CDATA[2025-12-12T12:44:26.860+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit/11891bb0-2ce2-45d6-a205-d2d1d2ea8d92 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_soldCountNullAndExistingProductHasNullSoldCount" classname="com.bakery.controller.ProductControllerTest" time="0.012">
+    <system-out><![CDATA[2025-12-12T12:44:26.870+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/fa2978b7-c90b-4e62-8eb6-972f4093fdd1 | Status: 302 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_authenticatedAndSuccess" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:26.883+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/1f43577d-004f-4b66-9b14-dc2cb907746b | Status: 302 | Duration: 4ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditImageForm_authenticatedAndFound" classname="com.bakery.controller.ProductControllerTest" time="0.032">
+    <system-out><![CDATA[2025-12-12T12:44:26.913+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit-image/fafb655f-6553-4e1e-8e3e-bf499ca8601b | Status: 200 | Duration: 20ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProductImage_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.005">
+    <system-out><![CDATA[2025-12-12T12:44:26.924+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-image/5f5684ce-a218-4beb-b606-0b7d5b1f7ee6 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_success" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:26.934+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowUpdateSalesForm_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.005">
+    <system-out><![CDATA[2025-12-12T12:44:26.942+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/update-sales/0484c3cf-5844-40d6-b093-10fc40005203 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProductImage_success" classname="com.bakery.controller.ProductControllerTest" time="0.01">
+    <system-out><![CDATA[2025-12-12T12:44:26.955+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-image/7260d8cb-926b-466a-8c0e-4df478be7608 | Status: 302 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowCreateForm_authenticated" classname="com.bakery.controller.ProductControllerTest" time="0.017">
+    <system-out><![CDATA[2025-12-12T12:44:26.975+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/create | Status: 200 | Duration: 13ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowDeleteConfirmation_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.007">
+    <system-out><![CDATA[2025-12-12T12:44:26.984+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/confirm-delete/64034c8f-4948-42c6-9d8c-e846b0b8d6d1 | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_withNonNullSoldCount" classname="com.bakery.controller.ProductControllerTest" time="0.006">
+    <system-out><![CDATA[2025-12-12T12:44:26.994+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/36ffcb14-b355-4c91-bf79-89015d271772 | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProduct_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.009">
+    <system-out><![CDATA[2025-12-12T12:44:27.007+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update/5ad5641d-6c77-420b-bad4-8efaf82445c1 | Status: 302 | Duration: 4ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowDeleteConfirmation_authenticatedAndFound" classname="com.bakery.controller.ProductControllerTest" time="0.01">
+    <system-out><![CDATA[2025-12-12T12:44:27.017+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/confirm-delete/5ee29d43-3b08-4475-80c8-c943dd5079f0 | Status: 200 | Duration: 5ms
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateProductImage_authenticatedAndIOException" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:27.027+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-image/8741825f-931e-45fe-996f-153d04c61ef8 | Status: 302 | Duration: 2ms
+]]></system-out>
+    <system-err><![CDATA[Failed to update product image: File upload failed
+]]></system-err>
+  </testcase>
+  <testcase name="testUpdateProductImage_authenticatedAndSuccess" classname="com.bakery.controller.ProductControllerTest" time="0.01">
+    <system-out><![CDATA[2025-12-12T12:44:27.038+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/update-image/67505653-ab3e-48d1-8937-f9772e3aa79b | Status: 302 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditForm_authenticatedAndNotFound" classname="com.bakery.controller.ProductControllerTest" time="0.007">
+    <system-out><![CDATA[2025-12-12T12:44:27.046+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit/fa54d304-012f-45ad-80b6-3743ecdb5a16 | Status: 302 | Duration: 2ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_withNullSoldCount" classname="com.bakery.controller.ProductControllerTest" time="0.01">
+    <system-out><![CDATA[2025-12-12T12:44:27.058+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 4ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowUpdateSalesForm_unauthenticated" classname="com.bakery.controller.ProductControllerTest" time="0.006">
+    <system-out><![CDATA[2025-12-12T12:44:27.066+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/update-sales/62f25d81-733c-41ee-836a-1010bf44f697 | Status: 302 | Duration: 1ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowUpdateSalesForm_authenticatedAndFound" classname="com.bakery.controller.ProductControllerTest" time="0.023">
+    <system-out><![CDATA[2025-12-12T12:44:27.089+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/update-sales/fc254e88-4121-4ff4-9d44-67a0fc23b0d9 | Status: 200 | Duration: 17ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_soldCountExplicitlySet" classname="com.bakery.controller.ProductControllerTest" time="0.008">
+    <system-out><![CDATA[2025-12-12T12:44:27.098+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 302 | Duration: 3ms
+]]></system-out>
+  </testcase>
+  <testcase name="testCreateProduct_invalidData" classname="com.bakery.controller.ProductControllerTest" time="0.022">
+    <system-out><![CDATA[2025-12-12T12:44:27.117+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: POST /products/create | Status: 200 | Duration: 11ms
+]]></system-out>
+  </testcase>
+  <testcase name="testShowEditForm_authenticatedAndFound" classname="com.bakery.controller.ProductControllerTest" time="0.021">
+    <system-out><![CDATA[2025-12-12T12:44:27.145+01:00  INFO 13164 --- [           main] com.bakery.config.RequestLoggingFilter   : Request: GET /products/edit/3278067c-2083-43df-920a-cc9b7a9a5212 | Status: 200 | Duration: 17ms
+]]></system-out>
+  </testcase>
+</testsuite>

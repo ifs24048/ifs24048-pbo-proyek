@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Mimi's Bakery</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FFD700;
+            --light-color: #FFF8DC;
+            --dark-color: #5D4037;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(139, 69, 19, 0.9), rgba(210, 105, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .hero-image {
+            animation: float 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+        }
+        
+        .hero-image img {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: rotateY(-10deg);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: rotateY(0deg) scale(1.05);
+        }
+        
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .feature-description {
+            color: #666;
+            text-align: center;
+            margin: 0;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-number {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* How It Works Section */
+        .how-it-works-section {
+            padding: 100px 0;
+            background: var(--light-color);
+        }
+        
+        .step-container {
+            position: relative;
+        }
+        
+        .step-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 0;
+        }
+        
+        .step-item {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            border: 5px solid var(--light-color);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .step-description {
+            color: #666;
+            margin: 0;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: floatBackground 20s linear infinite;
+        }
+        
+        @keyframes floatBackground {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .testimonial-content::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: var(--primary-color);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary-color);
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h5 {
+            margin: 0;
+            color: var(--dark-color);
+            font-size: 1rem;
+        }
+        
+        .author-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+        
+        .footer-links h5 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            margin-top: 60px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Custom Buttons */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.2);
+        }
+        
+        .btn-primary-custom:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
+        }
+        
+        .btn-light-custom {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            border: 2px solid white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-light-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .fade-in-delay-1 {
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+        
+        .fade-in-delay-2 {
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .cta-title {
+                font-size: 2.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .step-container::before {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-primary-custom,
+            .btn-light-custom {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(139, 69, 19, 0.95); backdrop-filter: blur(10px);">
+        <div class="container">
+            <a class="navbar-brand" href="/" style="font-family: 'Dancing Script', cursive; font-size: 2rem;">
+                <i class="fas fa-birthday-cake me-2"></i>Mimi's Bakery
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            <i class="fas fa-star me-1"></i>Fitur
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">
+                            <i class="fas fa-play-circle me-1"></i>Cara Kerja
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">
+                            <i class="fas fa-comment me-1"></i>Testimoni
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <i class="fas fa-sign-in-alt me-1"></i>Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light ms-2" href="/register">
+                            <i class="fas fa-user-plus me-1"></i>Daftar Gratis
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Selamat Datang di Mimi's Bakery</h1>
+                        <p class="hero-subtitle">
+                            Kelola bisnis toko roti Anda dengan mudah dan efisien. Sistem manajemen penjualan terintegrasi yang dirancang khusus untuk usaha bakery Anda.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="/register" class="btn-primary-custom">
+                                <i class="fas fa-play-circle me-2"></i>Mulai Sekarang
+                            </a>
+                            <a href="#features" class="btn-light-custom">
+                                <i class="fas fa-info-circle me-2"></i>Pelajari Fitur
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                             alt="Bakery Dashboard" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Pengguna Aktif</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item fade-in-delay-1">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Produk Terkelola</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item fade-in-delay-2">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">Kepuasan Pengguna</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item fade-in-delay-2">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Dukungan Teknis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Fitur Unggulan</h2>
+            <p class="section-subtitle fade-in-delay-1">
+                Semua yang Anda butuhkan untuk mengelola toko roti dengan mudah
+            </p>
+            
+            <div class="row">
+                <!-- Feature 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h3 class="feature-title">Manajemen Produk</h3>
+                        <p class="feature-description">
+                            Kelola semua produk roti Anda dengan mudah. Tambah, edit, hapus, dan pantau stok produk secara real-time.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in-delay-1">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Analisis & Laporan</h3>
+                        <p class="feature-description">
+                            Dapatkan insight bisnis dengan chart interaktif. Pantau produk terlaris dan stok yang hampir habis.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in-delay-2">
+                        <div class="feature-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h3 class="feature-title">Manajemen Gambar</h3>
+                        <p class="feature-description">
+                            Upload dan kelola gambar produk dengan mudah. Tampilkan foto-foto menarik untuk menarik pelanggan.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="feature-title">Multi-User</h3>
+                        <p class="feature-description">
+                            Sistem mendukung multi-user. Setiap karyawan dapat memiliki akun sendiri dengan hak akses yang sesuai.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in-delay-1">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Responsive Design</h3>
+                        <p class="feature-description">
+                            Akses sistem dari perangkat apapun. Tampilan optimal di desktop, tablet, maupun smartphone.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card fade-in-delay-2">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="feature-title">Backup Data</h3>
+                        <p class="feature-description">
+                            Data aman tersimpan di database. Sistem otomatis backup dan proteksi data penting bisnis Anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Cara Menggunakan</h2>
+            <p class="section-subtitle fade-in-delay-1">
+                Hanya 3 langkah sederhana untuk mulai mengelola bisnis Anda
+            </p>
+            
+            <div class="row step-container">
+                <div class="col-lg-4 mb-4">
+                    <div class="step-item fade-in">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Registrasi Akun</h3>
+                        <p class="step-description">
+                            Buat akun baru dengan mengisi form registrasi. Cukup dengan nama, email, dan password.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="step-item fade-in-delay-1">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Login ke Sistem</h3>
+                        <p class="step-description">
+                            Masuk ke dashboard dengan email dan password yang sudah Anda daftarkan.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="step-item fade-in-delay-2">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Kelola Produk</h3>
+                        <p class="step-description">
+                            Mulai tambah produk, atur stok, dan pantau penjualan dari dashboard Anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Apa Kata Pengguna</h2>
+            <p class="section-subtitle fade-in-delay-1">
+                Testimoni dari pemilik toko roti yang telah menggunakan sistem kami
+            </p>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-content">
+                            "Sistem ini sangat membantu dalam mengelola stok produk. Penjualan meningkat 40% setelah menggunakan dashboard analitik."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User">
+                            </div>
+                            <div class="author-info">
+                                <h5>Budi Santoso</h5>
+                                <p>Pemilik "Roti Enak"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card fade-in-delay-1">
+                        <div class="testimonial-content">
+                            "Manajemen gambar produk sangat mudah. Pelanggan bisa melihat foto produk yang jelas sebelum membeli."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="User">
+                            </div>
+                            <div class="author-info">
+                                <h5>Sari Dewi</h5>
+                                <p>Pemilik "Bakery Sari"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card fade-in-delay-

@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mimi's Bakery</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chart.js Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-pink: #FFB6C1;
+            --soft-peach: #FFDAB9;
+            --light-pink: #FFF0F5;
+            --dark-pink: #FF69B4;
+            --cream: #FFF8E7;
+            --brown: #8B4513;
+            --success: #FF7EB9;
+            --warning: #FFD166;
+            --info: #7EC8E3;
+            --purple: #C8A2C8;
+            --teal: #80CBC4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            min-height: 100vh;
+        }
+        
+        /* Navbar Styling - Soft Pink Peach */
+        .navbar-custom {
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            padding: 1rem 0;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--brown) !important;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            color: var(--dark-pink) !important;
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            color: var(--brown) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 25px;
+            margin: 0 0.3rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            color: var(--dark-pink) !important;
+        }
+        
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.4);
+            color: var(--dark-pink) !important;
+        }
+        
+        /* Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            color: var(--brown);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+            animation: fadeInUp 0.8s ease-out;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50px, -50px) rotate(360deg);
+            }
+        }
+        
+        .welcome-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            animation: pulse 2s infinite;
+            color: var(--brown);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255, 105, 180, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255, 105, 180, 0.7);
+            }
+        }
+        
+        /* Stats Cards */
+        .stats-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            transition: all 0.4s ease;
+            border: none;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+        }
+        
+        .stats-card:nth-child(1) { animation-delay: 0.1s; }
+        .stats-card:nth-child(2) { animation-delay: 0.2s; }
+        .stats-card:nth-child(3) { animation-delay: 0.3s; }
+        .stats-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .stats-card.primary::before { background: linear-gradient(90deg, var(--primary-pink), var(--soft-peach)); }
+        .stats-card.success::before { background: linear-gradient(90deg, #FF7EB9, #FFB8D9); }
+        .stats-card.warning::before { background: linear-gradient(90deg, #FFD166, #FFE8A0); }
+        .stats-card.info::before { background: linear-gradient(90deg, #7EC8E3, #A8E6CF); }
+        
+        .stats-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            color: white;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stats-card:hover .stats-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        .stats-card.primary .stats-icon {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+        }
+        
+        .stats-card.success .stats-icon {
+            background: linear-gradient(135deg, #FF7EB9, #FF4D94);
+        }
+        
+        .stats-card.warning .stats-icon {
+            background: linear-gradient(135deg, #FFD166, #FFB347);
+        }
+        
+        .stats-card.info .stats-icon {
+            background: linear-gradient(135deg, #7EC8E3, #4A90E2);
+        }
+        
+        .stats-card h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--brown);
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .stats-card p {
+            color: #8B7D7D;
+            margin: 0;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Chart Cards */
+        .chart-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            animation: fadeInUp 1s ease-out;
+            border: 2px solid rgba(255, 182, 193, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.3);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brown);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .chart-btn {
+            background: var(--light-pink);
+            border: 1px solid var(--primary-pink);
+            color: var(--brown);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .chart-btn:hover, .chart-btn.active {
+            background: var(--primary-pink);
+            color: white;
+        }
+        
+        /* Quick Actions */
+        .quick-actions-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            animation: fadeInUp 1.2s ease-out;
+            border: 2px solid rgba(255, 182, 193, 0.1);
+        }
+        
+        .action-btn {
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            color: var(--brown);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,182,193,0.1), rgba(255,218,185,0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            text-decoration: none;
+            color: var(--brown);
+        }
+        
+        .action-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .action-btn i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .action-btn:hover i {
+            transform: scale(1.2) rotate(10deg);
+            animation: bounce 0.5s ease infinite alternate;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0) scale(1.2); }
+            to { transform: translateY(-10px) scale(1.2); }
+        }
+        
+        .action-btn.add-product {
+            border-color: var(--success);
+            color: var(--success);
+        }
+        
+        .action-btn.add-product:hover {
+            background: linear-gradient(135deg, #FF7EB9, #FFB8D9);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .action-btn.view-products {
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+        }
+        
+        .action-btn.view-products:hover {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            border-color: transparent;
+        }
+        
+        .action-btn.print {
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+        
+        .action-btn.print:hover {
+            background: linear-gradient(135deg, #FFD166, #FFB347);
+            color: white;
+            border-color: transparent;
+        }
+        
+        .action-btn.about {
+            border-color: var(--info);
+            color: var(--info);
+        }
+        
+        .action-btn.about:hover {
+            background: linear-gradient(135deg, #7EC8E3, #4A90E2);
+            color: white;
+            border-color: transparent;
+        }
+        
+        /* Chart Filters */
+        .chart-filters {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            animation: fadeInUp 0.9s ease-out;
+        }
+        
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--light-pink);
+            border: 1px solid var(--primary-pink);
+            color: var(--brown);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-pink);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Recent Products Table */
+        .recent-products-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            animation: fadeInUp 1.4s ease-out;
+            border: 2px solid rgba(255, 182, 193, 0.1);
+        }
+        
+        .table-hover tbody tr {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .table-hover tbody tr:hover {
+            background: linear-gradient(90deg, rgba(255,182,193,0.1), rgba(255,218,185,0.1));
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2);
+        }
+        
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        /* Product Image in Table */
+        .product-image-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 3px solid var(--primary-pink);
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .product-image-box:hover {
+            transform: scale(1.1);
+            border-color: var(--dark-pink);
+        }
+        
+        .product-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .no-image-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--primary-pink);
+            color: var(--brown);
+            font-size: 1.5rem;
+        }
+        
+        /* Chart Legend */
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--light-pink);
+            border-radius: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--brown);
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            color: var(--brown);
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer h5 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-card h2 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-card {
+                margin-bottom: 1rem;
+            }
+            
+            .chart-container {
+                height: 250px;
+            }
+            
+            .action-btn {
+                padding: 1.5rem 0.5rem;
+            }
+            
+            .filter-group {
+                justify-content: center;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,182,193,0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-pink);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Floating Cake Animation */
+        .floating-cake {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Export Button */
+        .export-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        /* Empty chart state */
+        .chart-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #8B7D7D;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .chart-empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        
+        .chart-empty-state p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">
+                <i class="fas fa-birthday-cake me-2"></i>Mimi's Bakery 𖦹 ׂ 𓈒 🥞 ／ ⋆ ۪
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/dashboard">
+                            <i class="fas fa-home me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/products">
+                            <i class="fas fa-box me-1"></i>Produk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">
+                            <i class="fas fa-info-circle me-1"></i>Tentang
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i>
+                            <span th:text="${session.userName}">User</span>
+                        </a>
+                        <ul class="dropdown-menu" style="background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach)); border: none;">
+                            <li><a class="dropdown-item" href="#" style="color: var(--brown);">
+                                <i class="fas fa-user-circle me-2"></i>Profil
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" th:href="@{/logout}" style="color: var(--dark-pink);">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-4">
+        <!-- Welcome Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="welcome-card">
+                    <h2>Selamat Datang, <span th:text="${session.userName}" style="color: var(--dark-pink);"></span>!₍₍⚞(˶ˆᗜˆ˵)⚟⁾⁾</h2>
+                    <p class="lead mb-0">Analisis data toko roti Anda melalui dashboard interaktif ini. Pantau performa produk dan ambil keputusan bisnis yang lebih baik.</p>
+                    <div class="mt-3">
+                        <span class="badge me-2" style="background: rgba(255,255,255,0.3); color: var(--brown);">
+                            <i class="fas fa-calendar-alt me-1"></i>
+                            <span id="current-date"></span>
+                        </span>
+                        <span class="badge" style="background: rgba(255,255,255,0.3); color: var(--brown);">
+                            <i class="fas fa-clock me-1"></i>
+                            <span id="current-time"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stats-card primary">
+                    <div class="stats-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3 th:text="${totalProducts}">0</h3>
+                    <p>Total Produk</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card success">
+                    <div class="stats-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 th:text="${availableProducts}">0</h3>
+                    <p>Produk Tersedia</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card warning">
+                    <div class="stats-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 th:text="${lowStockProducts}">0</h3>
+                    <p>Stok Rendah</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card info">
+                    <div class="stats-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 th:text="${totalSold}">0</h3>
+                    <p>Total Terjual</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="row mb-4">
+            <!-- 1. Top Produk Terlaris -->
+            <div class="col-lg-6 mb-4">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h5 class="chart-title">
+                            <i class="fas fa-crown" style="color: var(--primary-pink);"></i>
+                            <span th:if="${bestSellingLabels != null && bestSellingLabels.size() > 0}">Top Produk Terlaris</span>
+                            <span th:unless="${bestSellingLabels != null && bestSellingLabels.size() > 0}">Belum Ada Produk Terlaris</span>
+                        </h5>
+                        <div class="chart-controls" th:if="${bestSellingLabels != null && bestSellingLabels.size() > 0}">
+                            <button class="chart-btn active" onclick="switchBestSellingChart('doughnut')" data-type="doughnut">Doughnut</button>
+                            <button class="chart-btn" onclick="switchBestSellingChart('line')" data-type="line">Line</button>
+                            <button class="chart-btn" onclick="switchBestSellingChart('pie')" data-type="pie">Pie</button>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3" th:if="${bestSellingLabels != null && bestSellingLabels.size() > 0}">
+                        Top 5 produk dengan penjualan tertinggi
+                    </p>
+                    <p class="text-muted mb-3" th:unless="${bestSellingLabels != null && bestSellingLabels.size() > 0}">
+                        <i class="fas fa-info-circle me-1"></i> Tambahkan penjualan produk untuk melihat chart
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="bestSellingChart"></canvas>
+                        <div th:if="${bestSellingLabels == null || bestSellingLabels.size() == 0}" class="chart-empty-state">
+                            <i class="fas fa-chart-pie fa-3x mb-3" style="color: var(--primary-pink);"></i>
+                            <p>Belum ada data penjualan</p>
+                        </div>
+                    </div>
+                    <div class="chart-legend" id="bestSellingLegend"></div>
+                    
+                    <!-- Info Tambahan -->
+                    <div class="row mt-3" th:if="${bestSellingLabels != null && bestSellingLabels.size() > 0}">
+                        <div class="col-6 text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-chart-line me-1" style="color: var(--primary-pink);"></i>
+                                Total: <strong th:text="${#aggregates.sum(bestSellingData)}">0</strong>
+                            </small>
+                        </div>
+                        <div class="col-6 text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-star me-1" style="color: var(--primary-pink);"></i>
+                                Produk: <strong th:text="${bestSellingLabels.size()}">0</strong>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Produk Stok Rendah -->
+            <div class="col-lg-6 mb-4">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h5 class="chart-title">
+                            <i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i>
+                            <span th:if="${lowStockLabels != null && lowStockLabels.size() > 0}">Produk Stok Rendah</span>
+                            <span th:unless="${lowStockLabels != null && lowStockLabels.size() > 0}">Stok Aman</span>
+                        </h5>
+                        <div class="chart-controls" th:if="${lowStockLabels != null && lowStockLabels.size() > 0}">
+                            <button class="chart-btn active" onclick="switchLowStockChart('bubble')" data-type="bubble">Bubble</button>
+                            <button class="chart-btn" onclick="switchLowStockChart('bar')" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <p class="text-muted mb-3" th:if="${lowStockLabels != null && lowStockLabels.size() > 0}">
+                        Produk dengan stok ≤ 10 unit (perlu restock)
+                    </p>
+                    <p class="text-muted mb-3" th:unless="${lowStockLabels != null && lowStockLabels.size() > 0}">
+                        <i class="fas fa-check-circle me-1 text-success"></i> Semua stok aman
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="lowStockChart"></canvas>
+                        <div th:if="${lowStockLabels == null || lowStockLabels.size() == 0}" class="chart-empty-state">
+                            <i class="fas fa-check-circle fa-3x mb-3 text-success"></i>
+                            <p>Stok semua produk aman</p>
+                        </div>
+                    </div>
+                    <div class="chart-legend" id="lowStockLegend"></div>
+                    
+                    <!-- Info Tambahan -->
+                    <div class="row mt-3" th:if="${lowStockLabels != null && lowStockLabels.size() > 0}">
+                        <div class="col-6 text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-box me-1" style="color: var(--warning);"></i>
+                                Total Stok: <strong th:text="${#aggregates.sum(lowStockData)}">0</strong>
+                            </small>
+                        </div>
+                        <div class="col-6 text-center">
+                            <small class="text-muted">
+                                <i class="fas fa-exclamation me-1" style="color: var(--warning);"></i>
+                                Produk: <strong th:text="${lowStockLabels.size()}">0</strong>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="quick-actions-card">
+                    <h5><i class="fas fa-bolt me-2" style="color: var(--warning);"></i>Quick action</h5>
+                    <p class="text-muted">Akses fitur penting dengan satu klik</p>
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a th:href="@{/products/create}" class="action-btn add-product">
+                                <i class="fas fa-plus"></i><br>
+                                <span>Tambah Produk</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a th:href="@{/products}" class="action-btn view-products">
+                                <i class="fas fa-list"></i><br>
+                                <span>Lihat Semua Produk</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <button class="action-btn print" onclick="window.print()">
+                                <i class="fas fa-print"></i><br>
+                                <span>Cetak Laporan</span>
+                            </button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <a th:href="@{/about}" class="action-btn about">
+                                <i class="fas fa-info-circle"></i><br>
+                                <span>Tentang Aplikasi</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Products -->
+        <div class="row">
+            <div class="col-12">
+                <div class="recent-products-card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="mb-0"><i class="fas fa-clock me-2" style="color: var(--info);"></i>Produk Terbaru</h5>
+                        <a th:href="@{/products}" class="btn btn-sm" style="background: linear-gradient(135deg, var(--primary-pink), var(--brown)); color: white; border: none;">
+                            <i class="fas fa-external-link-alt me-1"></i>Lihat Semua
+                        </a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead style="background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach)); color: var(--dark-pink);">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Gambar & Nama Produk</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="product, stat : ${bestSellingProducts}" th:if="${stat.index < 5}">
+                                    <td th:text="${stat.count}">1</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="me-3">
+                                                <div th:if="${product.imageUrl}" class="product-image-box">
+                                                    <img th:src="${product.imageUrl}" alt="Product Image" 
+                                                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'no-image-box\'><i class=\'fas fa-image\'></i></div>';">
+                                                </div>
+                                                <div th:unless="${product.imageUrl}" class="no-image-box">
+                                                    <i class="fas fa-image"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <strong th:text="${product.productName}" style="color: var(--brown);"></strong>
+                                                <br>
+                                                <small class="text-muted">
+                                                    <i class="fas fa-chart-line me-1"></i>
+                                                    Terjual: <span th:text="${product.soldCount}">0</span>
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach)); color: var(--brown);" 
+                                              th:text="${product.category}">Kategori</span>
+                                    </td>
+                                    <td>
+                                        <span class="fw-bold" style="color: var(--dark-pink);">
+                                            Rp <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">0</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span th:classappend="${product.stock <= 10} ? 'badge bg-danger' : 'badge'" 
+                                              th:style="${product.stock > 10} ? 'background: linear-gradient(135deg, #7EC8E3, #4A90E2); color: white;'" 
+                                              th:text="${product.stock} + ' pcs'">0 pcs</span>
+                                    </td>
+                                    <td>
+                                        <span th:if="${product.isAvailable}" class="badge" style="background: linear-gradient(135deg, #FF7EB9, #FF4D94); color: white;">
+                                            <i class="fas fa-check me-1"></i> Tersedia
+                                        </span>
+                                        <span th:unless="${product.isAvailable}" class="badge" style="background: linear-gradient(135deg, #8B7D7D, #696969); color: white;">
+                                            <i class="fas fa-times me-1"></i> Habis
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/products/detail/{id}(id=${product.id})}" 
+                                           class="btn btn-sm" style="background: linear-gradient(135deg, var(--info), #4A90E2); color: white;" 
+                                           title="Lihat Detail" data-bs-toggle="tooltip">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr th:if="${#lists.isEmpty(bestSellingProducts)}">
+                                    <td colspan="7" class="text-center text-muted py-5">
+                                        <div class="mb-4">
+                                            <i class="fas fa-box-open fa-4x" style="color: var(--primary-pink);"></i>
+                                        </div>
+                                        <h5 style="color: var(--brown);">Belum ada produk</h5>
+                                        <p class="mb-4">Mulai dengan menambahkan produk pertama Anda</p>
+                                        <a th:href="@{/products/create}" class="btn" 
+                                           style="background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); color: white; padding: 0.75rem 2rem; border-radius: 25px;">
+                                            <i class="fas fa-plus me-2"></i>Tambah Produk Pertama
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-birthday-cake me-2"></i>Mimi's Bakery</h5>
+                    <p class="mb-0">Bakery sales manager by piccitt (⸝⸝> ᴗ•⸝⸝)</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">&copy; 2025 Mimi's Bakery. All rights reserved.</p>
+                    <p class="mb-0">Versi 1.0.0 | Tema Soft Pink Peach | Chart Data Analytics</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cake Button -->
+    <div class="floating-cake" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Kembali ke Atas">
+        <i class="fas fa-birthday-cake"></i>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart JavaScript -->
+    <script th:inline="javascript">
+        // Chart Data dari Thymeleaf
+        const bestSellingData = {
+            labels: /*[[${bestSellingLabels}]]*/ [],
+            data: /*[[${bestSellingData}]]*/ []
+        };
+        
+        const lowStockData = {
+            labels: /*[[${lowStockLabels}]]*/ [],
+            data: /*[[${lowStockData}]]*/ []
+        };
+        
+        // Chart instances
+        let bestSellingChart = null;
+        let lowStockChart = null;
+        let currentBestSellingType = 'doughnut';
+        let currentLowStockType = 'bubble';
+        
+        // Chart Colors
+        const chartColors = {
+            getPinkColors: function(count) {
+                const colors = [
+                    '#FFB6C1', '#FF7EB9', '#FF9AA2', '#FFB7B2', '#FFDAC1',
+                    '#E2F0CB', '#B5EAD7', '#C7CEEA', '#A8E6CF', '#FFD3B6'
+                ];
+                return colors.slice(0, count);
+            },
+            getWarningColors: function(count) {
+                const colors = [
+                    '#FFD166', '#FFB347', '#FF9A76', '#FF8A65', '#FF7043',
+                    '#FF5722', '#E64A19', '#D84315', '#BF360C', '#8D6E63'
+                ];
+                return colors.slice(0, count);
+            },
+            pink: '#FFB6C1',
+            darkPink: '#FF69B4',
+            warning: '#FFD166',
+            warningDark: '#FFB347',
+            white: '#FFFFFF'
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dashboard loaded. Best selling data:', bestSellingData);
+            console.log('Low stock data:', lowStockData);
+            
+            // Initialize charts jika ada data
+            if (bestSellingData.labels.length > 0 && bestSellingData.data.length > 0) {
+                initBestSellingChart(currentBestSellingType);
+            }
+            
+            if (lowStockData.labels.length > 0 && lowStockData.data.length > 0) {
+                initLowStockChart(currentLowStockType);
+            }
+            
+            // Update current date and time
+            function updateDateTime() {
+                const now = new Date();
+                const dateOptions = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                const timeOptions = { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                };
+                
+                document.getElementById('current-date').textContent = 
+                    now.toLocaleDateString('id-ID', dateOptions);
+                document.getElementById('current-time').textContent = 
+                    now.toLocaleTimeString('id-ID', timeOptions);
+            }
+            
+            updateDateTime();
+            setInterval(updateDateTime, 1000);
+            
+            // Tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+        
+        // Fungsi untuk switch Best Selling Chart
+        function switchBestSellingChart(type) {
+            if (!bestSellingData.labels.length || !bestSellingData.data.length) return;
+            
+            currentBestSellingType = type;
+            
+            // Update active button
+            const controls = document.querySelector('#bestSellingChart').closest('.chart-card').querySelector('.chart-controls');
+            controls.querySelectorAll('.chart-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.type === type) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Reinitialize chart
+            if (bestSellingChart) {
+                bestSellingChart.destroy();
+            }
+            initBestSellingChart(type);
+        }
+        
+        // Fungsi untuk switch Low Stock Chart
+        function switchLowStockChart(type) {
+            if (!lowStockData.labels.length || !lowStockData.data.length) return;
+            
+            currentLowStockType = type;
+            
+            // Update active button
+            const controls = document.querySelector('#lowStockChart').closest('.chart-card').querySelector('.chart-controls');
+            controls.querySelectorAll('.chart-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.type === type) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Reinitialize chart
+            if (lowStockChart) {
+                lowStockChart.destroy();
+            }
+            initLowStockChart(type);
+        }
+        
+        // Initialize Best Selling Chart
+        function initBestSellingChart(type = 'doughnut') {
+            const canvas = document.getElementById('bestSellingChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            if (bestSellingData.labels.length === 0 || bestSellingData.data.length === 0) {
+                return;
+            }
+            
+            const colors = chartColors.getPinkColors(bestSellingData.labels.length);
+            
+            let datasetConfig;
+            
+            if (type === 'doughnut' || type === 'pie') {
+                datasetConfig = {
+                    label: 'Penjualan',
+                    data: bestSellingData.data,
+                    backgroundColor: colors,
+                    borderColor: chartColors.white,
+                    borderWidth: 2,
+                    hoverOffset: 15
+                };
+            } else if (type === 'line') {
+                datasetConfig = {
+                    label: 'Jumlah Terjual',
+                    data: bestSellingData.data,
+                    backgroundColor: 'rgba(255, 182, 193, 0.2)',
+                    borderColor: chartColors.darkPink,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: colors,
+                    pointBorderColor: chartColors.white,
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                };
+            }
+            
+            bestSellingChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: bestSellingData.labels,
+                    datasets: [datasetConfig]
+                },
+                options: getBestSellingOptions(type),
+                plugins: [ChartDataLabels]
+            });
+            
+            updateBestSellingLegend(colors);
+        }
+        
+        // Initialize Low Stock Chart
+        function initLowStockChart(type = 'bubble') {
+            const canvas = document.getElementById('lowStockChart');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            
+            if (lowStockData.labels.length === 0 || lowStockData.data.length === 0) {
+                return;
+            }
+            
+            if (type === 'bubble') {
+                const bubbleData = lowStockData.labels.map((label, index) => {
+                    const stock = lowStockData.data[index];
+                    return {
+                        x: index + 1,
+                        y: stock,
+                        r: Math.max(15, 35 - (stock * 2)),
+                        label: label
+                    };
+                });
+                
+                lowStockChart = new Chart(ctx, {
+                    type: 'bubble',
+                    data: {
+                        datasets: [{
+                            label: 'Stok Rendah',
+                            data: bubbleData,
+                            backgroundColor: lowStockData.data.map(stock => 
+                                stock <= 5 ? 'rgba(255, 209, 102, 0.8)' : 'rgba(255, 179, 71, 0.6)'
+                            ),
+                            borderColor: chartColors.warningDark,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: getLowStockBubbleOptions()
+                });
+                
+                updateLowStockBubbleLegend();
+            } else if (type === 'bar') {
+                lowStockChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: lowStockData.labels,
+                        datasets: [{
+                            label: 'Stok Tersisa',
+                            data: lowStockData.data,
+                            backgroundColor: lowStockData.data.map(stock => 
+                                stock <= 5 ? 'rgba(255, 209, 102, 0.8)' : 'rgba(255, 179, 71, 0.6)'
+                            ),
+                            borderColor: chartColors.warningDark,
+                            borderWidth: 2,
+                            borderRadius: 6
+                        }]
+                    },
+                    options: getLowStockBarOptions()
+                });
+                
+                updateLowStockBarLegend();
+            }
+        }
+        
+        // Update Legend functions
+        function updateBestSellingLegend(colors) {
+            const legendContainer = document.getElementById('bestSellingLegend');
+            if (!legendContainer) return;
+            
+            legendContainer.innerHTML = '';
+            
+            bestSellingData.labels.forEach((label, index) => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${colors[index]}"></div>
+                    <span>${label} (${bestSellingData.data[index]} unit)</span>
+                `;
+                legendContainer.appendChild(legendItem);
+            });
+        }
+        
+        function updateLowStockBubbleLegend() {
+            const legendContainer = document.getElementById('lowStockLegend');
+            if (!legendContainer) return;
+            
+            legendContainer.innerHTML = `
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: rgba(255, 209, 102, 0.8); border-radius: 50%;"></div>
+                    <span>Stok ≤ 5 (Prioritas Tinggi)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: rgba(255, 179, 71, 0.6); border-radius: 50%;"></div>
+                    <span>Stok 6-10 (Perlu Restock)</span>
+                </div>
+            `;
+        }
+        
+        function updateLowStockBarLegend() {
+            const legendContainer = document.getElementById('lowStockLegend');
+            if (!legendContainer) return;
+            
+            legendContainer.innerHTML = '';
+            
+            lowStockData.labels.forEach((label, index) => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                const color = lowStockData.data[index] <= 5 ? 'rgba(255, 209, 102, 0.8)' : 'rgba(255, 179, 71, 0.6)';
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${color}"></div>
+                    <span>${label}: ${lowStockData.data[index]} unit</span>
+                `;
+                legendContainer.appendChild(legendItem);
+            });
+        }
+        
+        // Chart Options functions
+        function getBestSellingOptions(type) {
+            const isPieLike = type === 'pie' || type === 'doughnut';
+            
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                if (isPieLike) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.raw / total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.raw} unit (${percentage}%)`;
+                                }
+                                return `${context.dataset.label}: ${context.raw} unit`;
+                            }
+                        }
+                    },
+                    datalabels: {
+                        color: isPieLike ? '#FFFFFF' : '#8B4513',
+                        font: { size: 11, weight: 'bold' },
+                        formatter: function(value, context) {
+                            if (isPieLike) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                                return percentage > 10 ? `${percentage}%` : '';
+                            }
+                            return value;
+                        },
+                        display: function(context) {
+                            if (isPieLike) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = total > 0 ? ((context.dataset.data[context.dataIndex] / total) * 100) : 0;
+                                return percentage > 10;
+                            }
+                            return true;
+                        }
+                    }
+                },
+                cutout: type === 'doughnut' ? '50%' : 0
+            };
+        }
+        
+        function getLowStockBubbleOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const data = context.raw;
+                                return [
+                                    `Produk: ${data.label}`,
+                                    `Stok: ${data.y} unit`
+                                ];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Produk',
+                            color: '#8B4513'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                if (lowStockData.labels[value - 1]) {
+                                    return lowStockData.labels[value - 1];
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Stok Tersisa',
+                            color: '#8B4513'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + ' unit';
+                            }
+                        }
+                    }
+                }
+            };
+        }
+        
+        function getLowStockBarOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Stok: ${context.raw} unit`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Stok Tersisa',
+                            color: '#8B4513'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + ' unit';
+                            }
+                        }
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Produk - Mimi's Bakery</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-pink: #FFB6C1;
+            --soft-peach: #FFDAB9;
+            --light-pink: #FFF0F5;
+            --dark-pink: #FF69B4;
+            --cream: #FFF8E7;
+            --brown: #8B4513;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 100%);
+            min-height: 100vh;
+        }
+        
+        /* Navbar */
+        .navbar-custom {
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+            padding: 1rem 0;
+        }
+        
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--brown) !important;
+        }
+        
+        .nav-link {
+            color: var(--brown) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: 25px;
+            margin: 0 0.3rem;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--dark-pink) !important;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            border: 2px solid rgba(255, 182, 193, 0.1);
+        }
+        
+        .page-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--brown);
+        }
+        
+        /* Stats Cards */
+        .stats-card-small {
+            background: white;
+            border-radius: 15px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2);
+            text-align: center;
+            border-top: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card-small:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-card-small.total { border-top-color: var(--primary-pink); }
+        .stats-card-small.available { border-top-color: #FF7EB9; }
+        .stats-card-small.low { border-top-color: #FFD166; }
+        .stats-card-small.sold { border-top-color: #7EC8E3; }
+        
+        .stats-card-small h3 {
+            font-size: 1.8rem;
+            color: var(--brown);
+            margin: 0;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+            border-color: var(--primary-pink);
+        }
+        
+        .product-image-container {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+            border: 3px solid var(--primary-pink);
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
+        }
+        
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .product-image-container img {
+            transform: scale(1.1);
+        }
+        
+        .no-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--brown);
+            font-size: 3rem;
+        }
+        
+        .product-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            color: var(--brown);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-stock {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stock-available {
+            background: linear-gradient(135deg, #7EC8E3, #4A90E2);
+            color: white;
+        }
+        
+        .stock-low {
+            background: linear-gradient(135deg, #FFD166, #FFB347);
+            color: white;
+        }
+        
+        .stock-out {
+            background: linear-gradient(135deg, #8B7D7D, #696969);
+            color: white;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 15px;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-detail { background: linear-gradient(135deg, #7EC8E3, #4A90E2); }
+        .btn-edit { background: linear-gradient(135deg, #FFD166, #FFB347); }
+        .btn-image { background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach)); color: var(--brown) !important; }
+        .btn-delete { background: linear-gradient(135deg, #FF7EB9, #FF4D94); }
+        
+        /* Add Product Button */
+        .add-product-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+        
+        .add-product-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6);
+            color: white;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            border: 2px dashed var(--primary-pink);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: 1.5rem;
+        }
+        
+        .empty-state h3 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+        }
+        
+        /* Modal */
+        .modal-content {
+            border-radius: 20px;
+            border: 3px solid var(--primary-pink);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach));
+            color: var(--brown);
+            border-radius: 20px 20px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">
+                <i class="fas fa-birthday-cake me-2"></i>Mimi's Bakery
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-home me-1"></i>Dashboard
+                </a>
+                <a class="nav-link active" href="/products">
+                    <i class="fas fa-box me-1"></i>Produk
+                </a>
+                <a class="nav-link" th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-4">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="mb-2"><i class="fas fa-boxes me-2"></i>Daftar Produk</h1>
+                    <p class="text-muted mb-0">Kelola semua produk roti dan kue Anda dengan mudah</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a th:href="@{/products/create}" class="add-product-btn">
+                        <i class="fas fa-plus me-2"></i>Tambah Produk Baru
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alert Messages -->
+        <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show" 
+             style="background: linear-gradient(135deg, #FF7EB9, #FFB8D9); color: white; border: none; border-radius: 15px;">
+            <i class="fas fa-check-circle me-2"></i>Operasi berhasil dilakukan!
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stats-card-small total">
+                    <h3 th:text="${#lists.size(products)}">0</h3>
+                    <p>Total Produk</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card-small available">
+                    <h3 th:text="${products.?[isAvailable == true].size()}">0</h3>
+                    <p>Tersedia</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card-small low">
+                    <h3 th:text="${products.?[stock <= 10].size()}">0</h3>
+                    <p>Stok Rendah</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card-small sold">
+                    <h3 th:text="${#aggregates.sum(products.![soldCount])}">0</h3>
+                    <p>Total Terjual</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="row" th:if="${not #lists.isEmpty(products)}">
+            <div th:each="product : ${products}" class="col-lg-4 col-md-6 mb-4">
+                <div class="product-card">
+                    <!-- Product Image -->
+                    <div class="product-image-container">
+                        <div th:if="${product.imageUrl}">
+                            <img th:src="${product.imageUrl}" alt="Product Image" 
+                                 onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'no-image-placeholder\'><i class=\'fas fa-image\'></i></div>';">
+                        </div>
+                        <div th:unless="${product.imageUrl}" class="no-image-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="product-name" th:text="${product.productName}"></div>
+                    
+                    <div class="product-category" th:text="${product.category}"></div>
+                    
+                    <div class="product-price">
+                        Rp <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span>
+                    </div>
+                    
+                    <div th:class="${product.stock <= 10 ? 'product-stock stock-low' : 'product-stock stock-available'}" 
+                         th:if="${product.isAvailable}">
+                        <i class="fas fa-box me-1"></i>
+                        <span th:text="${product.stock} + ' pcs tersedia'"></span>
+                    </div>
+                    
+                    <div th:unless="${product.isAvailable}" class="product-stock stock-out">
+                        <i class="fas fa-times me-1"></i>Habis
+                    </div>
+                    
+                    <!-- Status Badge -->
+                    <div class="mb-2">
+                        <span th:if="${product.isAvailable}" class="badge" 
+                              style="background: linear-gradient(135deg, #FF7EB9, #FF4D94); padding: 0.5rem 1rem;">
+                            <i class="fas fa-check me-1"></i> Tersedia
+                        </span>
+                        <span th:unless="${product.isAvailable}" class="badge" 
+                              style="background: linear-gradient(135deg, #8B7D7D, #696969); padding: 0.5rem 1rem;">
+                            <i class="fas fa-times me-1"></i> Habis
+                        </span>
+                    </div>
+                    
+                    <!-- Sold Count -->
+                    <div class="text-muted small mb-3">
+                        <i class="fas fa-chart-line me-1"></i>
+                        Terjual: <span th:text="${product.soldCount}">0</span>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="product-actions">
+                        <a th:href="@{/products/detail/{id}(id=${product.id})}" 
+                           class="action-btn btn-detail" title="Detail">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" 
+                           class="action-btn btn-edit" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a th:href="@{/products/edit-image/{id}(id=${product.id})}" 
+                           class="action-btn btn-image" title="Gambar">
+                            <i class="fas fa-image"></i>
+                        </a>
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" 
+                           class="action-btn btn-delete" title="Hapus"
+                           onclick="return confirm('Yakin ingin menghapus produk ini?')">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="row" th:if="${#lists.isEmpty(products)}">
+            <div class="col-12">
+                <div class="empty-state">
+                    <i class="fas fa-box-open"></i>
+                    <h3>Belum ada produk</h3>
+                    <p class="mb-4">Mulai dengan menambahkan produk pertama Anda untuk mengelola toko roti</p>
+                    <a th:href="@{/products/create}" class="add-product-btn">
+                        <i class="fas fa-plus me-2"></i>Tambah Produk Pertama
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Dashboard -->
+        <div class="text-center mt-4 mb-5">
+            <a th:href="@{/dashboard}" class="btn" 
+               style="background: linear-gradient(135deg, var(--primary-pink), var(--soft-peach)); color: var(--brown); padding: 0.75rem 2rem; border-radius: 25px;">
+                <i class="fas fa-arrow-left me-2"></i>Kembali ke Dashboard
+            </a>
+        </div>
+    </main>
+
+    <!-- Floating Cake Button -->
+    <div class="floating-cake" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Kembali ke Atas" 
+         style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4); z-index: 1000; cursor: pointer; animation: floatUpDown 3s ease-in-out infinite;">
+        <i class="fas fa-birthday-cake"></i>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Floating animation for cake button
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUpDown {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add hover effect to product cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
