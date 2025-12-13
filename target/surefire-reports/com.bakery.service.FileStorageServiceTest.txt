@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.bakery.service.FileStorageServiceTest
 -------------------------------------------------------------------------------
-Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.143 s -- in com.bakery.service.FileStorageServiceTest
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 s -- in com.bakery.service.FileStorageServiceTest

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.service</a> &gt; <span class="el_source">ProductService.java</span></div><h1>ProductService.java</h1><pre class="source lang-java linenums">package com.bakery.service;
+
+import com.bakery.entity.Product;
+import com.bakery.repository.ProductRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@Service
+public class ProductService {
+
+    private final ProductRepository productRepository;
+    private final FileStorageService fileStorageService;
+
+<span class="fc" id="L19">    public ProductService(ProductRepository productRepository, FileStorageService fileStorageService) {</span>
+<span class="fc" id="L20">        this.productRepository = productRepository;</span>
+<span class="fc" id="L21">        this.fileStorageService = fileStorageService;</span>
+<span class="fc" id="L22">    }</span>
+
+    public List&lt;Product&gt; getProductsByUserId(UUID userId) {
+<span class="fc" id="L25">        return productRepository.findByUserId(userId);</span>
+    }
+
+    public Optional&lt;Product&gt; getProductById(UUID id) {
+<span class="fc" id="L29">        return productRepository.findById(id);</span>
+    }
+
+    public Product createProduct(Product product, UUID userId) {
+<span class="fc" id="L33">        product.setUserId(userId);</span>
+<span class="fc" id="L34">        return productRepository.save(product);</span>
+    }
+
+    public Product updateProduct(UUID id, Product product) {
+<span class="fc" id="L38">        Product existingProduct = productRepository.findById(id)</span>
+<span class="fc" id="L39">                .orElseThrow(() -&gt; new RuntimeException(&quot;Product not found&quot;));</span>
+
+<span class="fc" id="L41">        existingProduct.setProductName(product.getProductName());</span>
+<span class="fc" id="L42">        existingProduct.setCategory(product.getCategory());</span>
+<span class="fc" id="L43">        existingProduct.setPrice(product.getPrice());</span>
+<span class="fc" id="L44">        existingProduct.setStock(product.getStock());</span>
+<span class="fc" id="L45">        existingProduct.setDescription(product.getDescription());</span>
+<span class="fc" id="L46">        existingProduct.setIsAvailable(product.getIsAvailable());</span>
+<span class="fc" id="L47">        existingProduct.setSoldCount(product.getSoldCount());</span>
+
+<span class="fc" id="L49">        return productRepository.save(existingProduct);</span>
+    }
+
+    public void deleteProduct(UUID id) {
+<span class="fc" id="L53">        productRepository.deleteById(id);</span>
+<span class="fc" id="L54">    }</span>
+
+    public void updateProductImage(UUID id, MultipartFile imageFile) throws IOException {
+<span class="fc" id="L57">        Product product = productRepository.findById(id)</span>
+<span class="fc" id="L58">                .orElseThrow(() -&gt; new RuntimeException(&quot;Product not found&quot;));</span>
+
+<span class="fc bfc" id="L60" title="All 4 branches covered.">        if (imageFile != null &amp;&amp; !imageFile.isEmpty()) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (product.getImageUrl() != null) {</span>
+<span class="fc" id="L62">                fileStorageService.deleteFile(product.getImageUrl());</span>
+            }
+
+<span class="fc" id="L65">            String storageFileName = fileStorageService.storeFile(imageFile);</span>
+<span class="fc" id="L66">            product.setImageUrl(storageFileName);</span>
+<span class="fc" id="L67">            productRepository.save(product);</span>
+        }
+<span class="fc" id="L69">    }</span>
+
+    public List&lt;Product&gt; findByCategory(String category) {
+<span class="fc" id="L72">        return productRepository.findByCategory(category);</span>
+    }
+
+    public List&lt;Product&gt; findByIsAvailable(Boolean isAvailable) {
+<span class="fc" id="L76">        return productRepository.findByIsAvailable(isAvailable);</span>
+    }
+
+    public List&lt;Product&gt; findByStockLessThan(Integer stock) {
+<span class="fc" id="L80">        return productRepository.findByStockLessThan(stock);</span>
+    }
+
+    public void updateSales(UUID productId, int soldCount) {
+<span class="fc" id="L84">        Product existingProduct = productRepository.findById(productId)</span>
+<span class="fc" id="L85">                .orElseThrow(() -&gt; new RuntimeException(&quot;Product not found&quot;));</span>
+<span class="fc" id="L86">        existingProduct.setSoldCount(soldCount);</span>
+<span class="fc" id="L87">        productRepository.save(existingProduct);</span>
+<span class="fc" id="L88">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

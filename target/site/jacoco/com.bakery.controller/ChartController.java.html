@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChartController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bakery-sales-manager</a> &gt; <a href="index.source.html" class="el_package">com.bakery.controller</a> &gt; <span class="el_source">ChartController.java</span></div><h1>ChartController.java</h1><pre class="source lang-java linenums">package com.bakery.controller;
+
+import com.bakery.entity.Product;
+import com.bakery.service.ProductService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import jakarta.servlet.http.HttpSession;
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Controller
+public class ChartController {
+
+    private final ProductService productService;
+
+<span class="fc" id="L17">    public ChartController(ProductService productService) {</span>
+<span class="fc" id="L18">        this.productService = productService;</span>
+<span class="fc" id="L19">    }</span>
+
+    @GetMapping(&quot;/dashboard&quot;)
+    public String showDashboard(Model model, HttpSession session) {
+<span class="fc" id="L23">        UUID userId = (UUID) session.getAttribute(&quot;userId&quot;);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (userId == null) {</span>
+<span class="fc" id="L25">            return &quot;redirect:/login&quot;;</span>
+        }
+
+<span class="fc" id="L28">        List&lt;Product&gt; userProducts = productService.getProductsByUserId(userId);</span>
+
+        // Statistics
+<span class="fc" id="L31">        long totalProducts = userProducts.size();</span>
+<span class="fc" id="L32">        long availableProducts = userProducts.stream()</span>
+<span class="fc bfc" id="L33" title="All 4 branches covered.">                .filter(p -&gt; p.getIsAvailable() != null &amp;&amp; p.getIsAvailable())</span>
+<span class="fc" id="L34">                .count();</span>
+<span class="fc" id="L35">        long lowStockProducts = userProducts.stream()</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">                .filter(p -&gt; p.getStock() != null &amp;&amp; p.getStock() &lt;= 10)</span>
+<span class="fc" id="L37">                .count();</span>
+<span class="fc" id="L38">        int totalSold = userProducts.stream()</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                .mapToInt(p -&gt; p.getSoldCount() != null ? p.getSoldCount() : 0)</span>
+<span class="fc" id="L40">                .sum();</span>
+
+<span class="fc" id="L42">        model.addAttribute(&quot;totalProducts&quot;, totalProducts);</span>
+<span class="fc" id="L43">        model.addAttribute(&quot;availableProducts&quot;, availableProducts);</span>
+<span class="fc" id="L44">        model.addAttribute(&quot;lowStockProducts&quot;, lowStockProducts);</span>
+<span class="fc" id="L45">        model.addAttribute(&quot;totalSold&quot;, totalSold);</span>
+
+        // ========== HANYA 2 CHART DATA ==========
+
+        // 1. Best Selling Products (Top 5)
+<span class="fc" id="L50">        List&lt;Product&gt; bestSelling = userProducts.stream()</span>
+<span class="fc" id="L51">                .sorted((p1, p2) -&gt; {</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                    Integer sold1 = p1.getSoldCount() != null ? p1.getSoldCount() : 0;</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">                    Integer sold2 = p2.getSoldCount() != null ? p2.getSoldCount() : 0;</span>
+<span class="fc" id="L54">                    return sold2.compareTo(sold1);</span>
+                })
+<span class="fc" id="L56">                .limit(5)</span>
+<span class="fc" id="L57">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L59">        model.addAttribute(&quot;bestSellingProducts&quot;, bestSelling);</span>
+<span class="fc" id="L60">        model.addAttribute(&quot;bestSellingLabels&quot;,</span>
+<span class="fc" id="L61">                bestSelling.stream().map(Product::getProductName).collect(Collectors.toList()));</span>
+<span class="fc" id="L62">        model.addAttribute(&quot;bestSellingData&quot;,</span>
+<span class="fc" id="L63">                bestSelling.stream()</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">                        .map(p -&gt; p.getSoldCount() != null ? p.getSoldCount() : 0)</span>
+<span class="fc" id="L65">                        .collect(Collectors.toList()));</span>
+
+        // 2. Low Stock Products (Stok ≤ 10)
+        // 2. Low Stock Products (Stok &lt;= 10)
+<span class="fc" id="L69">        List&lt;Product&gt; lowStock = userProducts.stream()</span>
+<span class="fc bfc" id="L70" title="All 4 branches covered.">                .filter(p -&gt; p.getStock() != null &amp;&amp; p.getStock() &lt;= 10)</span>
+<span class="fc" id="L71">                .sorted(Comparator.comparing(Product::getStock))</span>
+<span class="fc" id="L72">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L74">        model.addAttribute(&quot;lowStockProductsList&quot;, lowStock);</span>
+<span class="fc" id="L75">        model.addAttribute(&quot;lowStockLabels&quot;,</span>
+<span class="fc" id="L76">                lowStock.stream().map(Product::getProductName).collect(Collectors.toList()));</span>
+<span class="fc" id="L77">        model.addAttribute(&quot;lowStockData&quot;,</span>
+<span class="fc" id="L78">                lowStock.stream()</span>
+<span class="fc" id="L79">                        .map(Product::getStock)</span>
+<span class="fc" id="L80">                        .collect(Collectors.toList()));</span>
+
+<span class="fc" id="L82">        return &quot;dashboard&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
